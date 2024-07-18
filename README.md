@@ -1,30 +1,90 @@
-# React + TypeScript + Vite
+# React Project with Atomic Design and Feature-Based Architecture
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project follows the Atomic Design methodology and a feature-based architecture to organize components and functionalities.
 
-Currently, two official plugins are available:
+## Style Guide
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Atoms:** Basic reusable components like buttons, input fields, labels.
+- **Molecules:** Combinations of atoms to form more complex units like form fields.
+- **Organisms:** Combinations of molecules and atoms that form complete sections of the interface like complete forms.
+- **Templates:** Page layouts that include organisms and other components.
+- **Pages:** Full pages of the application that include templates and other components.
 
-## Expanding the ESLint configuration
+### Directory Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The directory structure is organized as follows:
+src/
+assets/
+features/
+auth/
+atoms/
+molecules/
+organisms/
+templates/
+pages/
+LoginPage.tsx
+RegisterPage.tsx
+dashboard/
+atoms/
+SimpleChart.tsx
+molecules/
+DashboardPanel.tsx
+organisms/
+Dashboard.tsx
+templates/
+pages/
+DashboardPage.tsx
+components/
+atoms/
+molecules/
+organisms/
+templates/
+pages/
+utils/
+services/
+hooks/
+styles/
+App.tsx
+index.css
+main.tsx
+vite-env.d.ts
 
-- Configure the top-level `parserOptions` property like this:
+#### Components
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+##### Auth Feature
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+**Atoms**
+
+- **AuthButton.tsx:** Reusable button for authentication actions.
+
+**Molecules**
+
+- **FormField.tsx:** Combination of `Label` and `Input` for forms.
+
+**Organisms**
+
+- **LoginForm.tsx:** Login form.
+- **RegisterForm.tsx:** Registration form.
+
+**Pages**
+
+- **LoginPage.tsx:** Login page.
+- **RegisterPage.tsx:** Registration page.
+
+##### Dashboard Feature
+
+**Atoms**
+
+- **SimpleChart.tsx:** Simple chart using `recharts`.
+
+**Molecules**
+
+- **DashboardPanel.tsx:** Dashboard panel containing a chart.
+
+**Organisms**
+
+- **Dashboard.tsx:** Dashboard that groups multiple panels.
+
+**Pages**
+
+- **DashboardPage.tsx:** Page displaying the complete dashboard.
