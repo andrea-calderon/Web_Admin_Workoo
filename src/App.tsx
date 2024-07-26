@@ -1,30 +1,21 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import './styles/App.css'
+import React from 'react';
+import './config/i18n/i18n';
+import './styles/App.css';
+import LanguageSwitcher from './features/auth/components/atoms/LanguajeSwitcher';
+import WelcomeComponent from './features/auth/components/molecules/Welcome';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App: React.FC = () => {
+  
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>Projectx-HUNABKU</h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+      
+      <div>
+        <LanguageSwitcher/>
+        <WelcomeComponent/>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
