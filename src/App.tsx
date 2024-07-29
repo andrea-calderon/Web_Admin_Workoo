@@ -1,7 +1,7 @@
 import React from 'react';
-import './config/i18n/i18n';
+import './utils/i18n';
 import './styles/App.css';
-import LanguageSwitcher from './features/auth/components/atoms/LanguajeSwitcher';
+import LanguageSwitcher from './features/auth/components/molecules/LanguajeSwitcher';
 import WelcomeComponent from './features/auth/components/molecules/Welcome';
 
 const App: React.FC = () => {
