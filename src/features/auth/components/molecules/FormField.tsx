@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AuthButton } from '../atoms';
+import AuthButton from '../atoms/AuthButton';
 import { Box, Typography } from '@mui/material';
 
 const FormField: React.FC = () => {
