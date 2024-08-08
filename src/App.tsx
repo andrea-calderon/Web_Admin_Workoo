@@ -1,9 +1,10 @@
 import React from 'react';
-import './utils/i18n';
-import './styles/App.css';
-import LanguageSwitcher from './features/auth/components/molecules/LanguajeSwitcher';
-import WelcomeComponent from './features/auth/components/molecules/Welcome';
 import FormField from './features/auth/components/molecules/FormField';
+import LanguageSwitcher from './features/auth/components/molecules/LanguajeSwitcher';
+import LoggerComponent from './features/auth/components/molecules/LoggerComponent';
+import WelcomeComponent from './features/auth/components/molecules/Welcome';
+import './styles/App.css';
+import './utils/i18n';
 
 const App: React.FC = () => {
   
@@ -17,6 +18,8 @@ const App: React.FC = () => {
         <LanguageSwitcher/>
         <WelcomeComponent/>
         <FormField/>
+        <br/>
+        <LoggerComponent/>
       </div>
     </>
   );
