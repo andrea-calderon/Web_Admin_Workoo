@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import { logger, LOGGER_EVENTS, setUserInfo } from '../../../../utils/logger';
 
+=======
+// src/components/MyComponent.tsx
+
+import React, { useEffect } from 'react';
+import { logger, LOGGER_EVENTS, setUserInfo } from '../../../../utils/logger'; // Asegúrate de ajustar la ruta según tu estructura de carpetas
+>>>>>>> 33b6491 (feat(KAN-34): Global logger component created and added a button to test the component in console)
 
 const LoggerComponent: React.FC = () => {
   useEffect(() => {
