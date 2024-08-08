@@ -6,17 +6,16 @@ import WelcomeComponent from './features/auth/components/molecules/Welcome';
 import FormField from './features/auth/components/molecules/FormField';
 
 const App: React.FC = () => {
-  
   return (
     <>
       <div>
         <h1>Projectx-HUNABKU</h1>
       </div>
-      
+
       <div>
-        <LanguageSwitcher/>
-        <WelcomeComponent/>
-        <FormField/>
+        <LanguageSwitcher />
+        <WelcomeComponent />
+        <FormField />
       </div>
     </>
   );

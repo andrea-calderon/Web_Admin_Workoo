@@ -18,5 +18,3 @@ const LanguageSwitcher: React.FC = () => {
 };
 
 export default LanguageSwitcher;
-
-
