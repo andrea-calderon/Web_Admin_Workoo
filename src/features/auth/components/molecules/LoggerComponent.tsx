@@ -1,7 +1,6 @@
-// src/components/MyComponent.tsx
-
 import React, { useEffect } from 'react';
-import { logger, LOGGER_EVENTS, setUserInfo } from '../../../../utils/logger'; // Asegúrate de ajustar la ruta según tu estructura de carpetas
+import { logger, LOGGER_EVENTS, setUserInfo } from '../../../../utils/logger';
+
 
 const LoggerComponent: React.FC = () => {
   useEffect(() => {
