@@ -2,6 +2,7 @@ import React from 'react';
 import { I18nextProvider } from 'react-i18next';
 import FormField from './features/auth/components/molecules/FormField';
 import LanguageSwitcher from './features/auth/components/molecules/LanguajeSwitcher';
+import RegisterForm from './features/auth/components/molecules/RegisterForm';
 import WelcomeComponent from './features/auth/components/molecules/Welcome';
 import './styles/App.css';
 import i18n from './utils/i18n';
@@ -19,6 +20,9 @@ const App: React.FC = () => {
         <WelcomeComponent/>
         <FormField/>
       </div>
+      <br/>
+      <RegisterForm/>
+
     </I18nextProvider>
   );
 };
