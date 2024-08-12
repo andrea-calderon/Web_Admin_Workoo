@@ -24,7 +24,9 @@ const FormField: React.FC = () => {
             borderRadius: 1,
           }}
         >
-          <Typography variant="body1">This is the additional box where you can add more text!</Typography>
+          <Typography variant="body1">
+            This is the additional box where you can add more text!
+          </Typography>
         </Box>
       )}
     </div>
