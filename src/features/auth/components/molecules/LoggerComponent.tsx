@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useEffect } from 'react';
 import { logger, LOGGER_EVENTS, setUserInfo } from '../../../../utils/logger';
 
@@ -8,6 +9,11 @@ import { logger, LOGGER_EVENTS, setUserInfo } from '../../../../utils/logger';
 import React, { useEffect } from 'react';
 import { logger, LOGGER_EVENTS, setUserInfo } from '../../../../utils/logger'; // Asegúrate de ajustar la ruta según tu estructura de carpetas
 >>>>>>> 33b6491 (feat(KAN-34): Global logger component created and added a button to test the component in console)
+=======
+import React, { useEffect } from 'react';
+import { logger, LOGGER_EVENTS, setUserInfo } from '../../../../utils/logger';
+
+>>>>>>> effb40aea1c9d85182cf72ca61164e0e3f3c53a2
 
 const LoggerComponent: React.FC = () => {
   useEffect(() => {
