@@ -13,8 +13,8 @@ type FormValues = {
 };
 
 const validationSchema = Yup.object({
-  username: Yup.string().required('Username is required'),
-  email: Yup.string().email('Invalid email address').required('Email is required'),
+  username: Yup.string().matches(/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers, and underscores').required('Username is required'),
+  email: Yup.string().email('Invalid email address').matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, 'Email must have a valid domain').required('Email is required'),
   password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
 });
 
