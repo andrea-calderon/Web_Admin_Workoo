@@ -2,7 +2,7 @@
 const SettingsPage = () => {
   return (
     <div>
-      <h1>Settings</h1>
+      <h2>Settings</h2>
       {/* Here we can add the content for the settings*/}
     </div>
   );

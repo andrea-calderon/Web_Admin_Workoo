@@ -1,3 +1,4 @@
+import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 
 const AuthSidebar = () => {
@@ -5,9 +6,10 @@ const AuthSidebar = () => {
     <aside>
       <nav>
         <ul>
+          <li><Link to="/app/home"><HomeIcon/></Link></li>
           <li><Link to="/app/dashboard">Dashboard</Link></li>
           <li><Link to="/app/settings">Settings</Link></li>
-          {/* More links can be added here as needed */}
+
         </ul>
       </nav>
     </aside>
