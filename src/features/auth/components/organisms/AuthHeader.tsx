@@ -1,10 +1,18 @@
 
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { AppBar, Avatar, Box, IconButton, InputBase, Toolbar, Typography } from '@mui/material';
+import React from 'react';
 
-const AuthHeader = () => {
+interface AuthHeaderProps {
+  toggleTheme: () => void;
+  themeMode: 'light' | 'dark';
+}
+
+const AuthHeader: React.FC<AuthHeaderProps> = ({ toggleTheme, themeMode }) => {
   return (
     <AppBar
       position="fixed"
@@ -42,6 +50,7 @@ const AuthHeader = () => {
                 flex: 1,
                 color: '#343c6a',
               }}
+              inputProps={{ 'aria-label': 'search' }}
             />
           </Box>
         </Box>
@@ -70,6 +79,10 @@ const AuthHeader = () => {
             <NotificationsIcon />
           </IconButton>
           <Avatar alt="User Profile" src="/path-to-image.jpg" sx={{ ml: 3 }} />
+
+          <IconButton onClick={toggleTheme} color="inherit">
+        {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+      </IconButton>
         </Box>
       </Toolbar>
     </AppBar>

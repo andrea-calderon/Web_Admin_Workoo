@@ -15,7 +15,7 @@ export default [
   {
     rules: {
       'react/react-in-jsx-scope': 'off',
-      'react/prop-types': 'off', // Desactiva la regla que exige importar React en JSX
+      'react/prop-types': 'off',
     },
   },
 ];
