@@ -1,18 +1,17 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const SettingsPage: React.FC = () => {
+const ServicesPage: React.FC = () => {
   return (
     <div>
       <Typography variant="h2" component="h1" gutterBottom sx={{color: '#b1b1b1'}}>
-        Settings
+        Services
       </Typography>
       <Typography variant="body1">
-        Welcome to the Settings Page. Here you can manage your main configuration.
+        Welcome to the Services Page. Here you can manage your services.
       </Typography>
     </div>
   );
 };
 
-export default SettingsPage;
-
+export default ServicesPage;

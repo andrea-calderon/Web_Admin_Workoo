@@ -33,7 +33,7 @@ const App: React.FC = () => {
                     justifyContent="center"
                     minHeight="100vh"
                   >
-                    <Typography variant="h2" component="h1" gutterBottom>
+                    <Typography variant="h2" component="h1" gutterBottom sx={{color: '#6750A4'}}>
                       WORKOO
                     </Typography>
                     

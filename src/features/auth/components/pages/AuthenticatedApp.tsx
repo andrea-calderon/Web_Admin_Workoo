@@ -1,26 +1,60 @@
+// Librerías externas
+import { Box, CssBaseline } from '@mui/material';
+import { Route, Routes } from 'react-router-dom';
+
+// Componentes globales
+import AuthHeader from '../organisms/AuthHeader';
+import AuthSidebar from '../organisms/AuthSidebar';
+
+// Páginas de características específicas
+import HomePage from '@/features/auth/components/pages/HomePage';
 import DashboardPage from '@/features/dashboard/components/pages/DashboardPage';
 import SettingsPage from '@/features/dashboard/components/pages/SettingsPage';
-import { Route, Routes } from 'react-router-dom';
-import AuthSidebar from '../organisms/AuthSidebar';
-import HomePage from './HomePage';
+
+// Páginas internas
+import AnalysisPage from './AnalysisPage';
+import PaymentsPage from './PaymentsPage';
+import QualificationsPage from './QualificationsPage';
+import ServicesPage from './ServicesPage';
+import SuppliersPage from './SuppliersPage';
+import SupportPage from './SupportPage';
+import UsersPage from './UsersPage';
+
 
 const AuthenticatedApp = () => {
   return (
-    <div>
-      
-      <div style={{ display: 'flex' }}>
-        <AuthSidebar />
-        <main>
+    <Box sx={{ display: 'flex', height: '100vh' }}>
+      <CssBaseline />
+      <AuthSidebar />
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          marginLeft: '240px',
+          marginTop: '64px',  
+          position: 'relative',
+        }}
+      >
+        <AuthHeader />
+        <Box sx={{ flexGrow: 1, padding: 3 }}>
           <Routes>
             <Route path="home" element={<HomePage />} />
             <Route path="dashboard" element={<DashboardPage />} />
+            <Route path="suppliers" element={<SuppliersPage />} />
+            <Route path="users" element={<UsersPage />} />
+            <Route path="services" element={<ServicesPage />} />
+            <Route path="qualifications" element={<QualificationsPage />} />
+            <Route path="payments" element={<PaymentsPage />} />
+            <Route path="support" element={<SupportPage />} />
+            <Route path="analysis" element={<AnalysisPage />} />
             <Route path="settings" element={<SettingsPage />} />
 
           </Routes>
-        </main>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 
 export default AuthenticatedApp;
+
