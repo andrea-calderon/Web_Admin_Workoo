@@ -20,13 +20,11 @@ import SuppliersPage from './SuppliersPage';
 import SupportPage from './SupportPage';
 import UsersPage from './UsersPage';
 
+import { useTheme } from '@/styles/contexts/ThemeProvider';
 
-type AuthenticatedAppProps = {
-  toggleTheme: () => void;
-  themeMode: 'light' | 'dark';
-};
 
-const AuthenticatedApp: React.FC<AuthenticatedAppProps> = ({ toggleTheme, themeMode }) => {
+const AuthenticatedApp: React.FC = () => {
+  const { toggleTheme, themeMode } = useTheme();
   return (
     <Box sx={{ display: 'flex', height: '100vh' }}>
       <CssBaseline />

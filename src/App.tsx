@@ -1,16 +1,16 @@
 import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
-import { getTheme } from '@/styles/theme';
-import { Box, Button, Container, CssBaseline, ThemeProvider, Typography } from '@mui/material';
+import { Box, Button, Container, CssBaseline, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './styles/App.css';
+import { ThemeProvider } from './styles/contexts/ThemeProvider';
 import i18n from './utils/i18n';
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [themeMode, setThemeMode] = useState<'light' | 'dark'>('light');
-
+  
   const handleLogin = () => {
     setIsAuthenticated(true);
   };
@@ -21,7 +21,7 @@ const App: React.FC = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <ThemeProvider theme={getTheme(themeMode)}>
+      <ThemeProvider themeMode={themeMode} toggleTheme={toggleTheme}>
         <CssBaseline />
         <Router>
           <Routes>
@@ -60,7 +60,7 @@ const App: React.FC = () => {
               path="/app/*"
               element={
                 isAuthenticated ? (
-                  <AuthenticatedApp toggleTheme={toggleTheme} themeMode={themeMode} />
+                  <AuthenticatedApp/>
                 ) : (
                   <Navigate to="/" />
                 )
