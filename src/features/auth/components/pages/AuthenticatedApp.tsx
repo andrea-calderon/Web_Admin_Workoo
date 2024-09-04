@@ -20,11 +20,15 @@ import SuppliersPage from './SuppliersPage';
 import SupportPage from './SupportPage';
 import UsersPage from './UsersPage';
 
+import { useTheme } from '@/styles/contexts/ThemeProvider';
 
-const AuthenticatedApp = () => {
+
+const AuthenticatedApp: React.FC = () => {
+  const { toggleTheme, themeMode } = useTheme();
   return (
     <Box sx={{ display: 'flex', height: '100vh' }}>
       <CssBaseline />
+      <AuthHeader toggleTheme={toggleTheme} themeMode={themeMode} />
       <AuthSidebar />
       <Box
         component="main"
@@ -35,26 +39,21 @@ const AuthenticatedApp = () => {
           position: 'relative',
         }}
       >
-        <AuthHeader />
-        <Box sx={{ flexGrow: 1, padding: 3 }}>
-          <Routes>
-            <Route path="home" element={<HomePage />} />
-            <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="suppliers" element={<SuppliersPage />} />
-            <Route path="users" element={<UsersPage />} />
-            <Route path="services" element={<ServicesPage />} />
-            <Route path="qualifications" element={<QualificationsPage />} />
-            <Route path="payments" element={<PaymentsPage />} />
-            <Route path="support" element={<SupportPage />} />
-            <Route path="analysis" element={<AnalysisPage />} />
-            <Route path="settings" element={<SettingsPage />} />
-
-          </Routes>
-        </Box>
+        <Routes>
+          <Route path="home" element={<HomePage />} />
+          <Route path="dashboard" element={<DashboardPage />} />
+          <Route path="suppliers" element={<SuppliersPage />} />
+          <Route path="users" element={<UsersPage />} />
+          <Route path="services" element={<ServicesPage />} />
+          <Route path="qualifications" element={<QualificationsPage />} />
+          <Route path="payments" element={<PaymentsPage />} />
+          <Route path="support" element={<SupportPage />} />
+          <Route path="analysis" element={<AnalysisPage />} />
+          <Route path="settings" element={<SettingsPage />} />
+        </Routes>
       </Box>
     </Box>
   );
 };
 
 export default AuthenticatedApp;
-

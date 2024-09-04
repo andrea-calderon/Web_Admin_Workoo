@@ -8,17 +8,20 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import StoreIcon from '@mui/icons-material/Store';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
 import { Link, useLocation } from 'react-router-dom';
 
 const AuthSidebar = () => {
+  const theme = useTheme()
   const location = useLocation();
 
   const getColor = (path: string): string => {
-    return location.pathname === path ? '#9b76ff' : '#b1b1b1'; 
+    return location.pathname === path ? theme.palette.primary.main : theme.palette.text.secondary; 
   };
 
   const getTabColor = (path: string): string => {
-    return location.pathname === path ? '#9b76ff' : 'transparent'; 
+    return location.pathname === path ? theme.palette.primary.main : 'transparent'; 
   };
 
   return (
@@ -29,8 +32,8 @@ const AuthSidebar = () => {
         '& .MuiDrawer-paper': {
           width: '240px',
           boxSizing: 'border-box',
-          backgroundColor: '#ffffff',
-          zIndex: (theme) => theme.zIndex.drawer,
+          backgroundColor: theme.palette.background.paper,
+          zIndex: theme.zIndex.drawer,
         },
       }}
     >
@@ -42,7 +45,7 @@ const AuthSidebar = () => {
             textAlign: 'center',
             width: '100%',
           }}>
-            <Typography variant="h5" component="h1" gutterBottom sx={{ color: '#6750A4', fontWeight: 700, fontSize:'2rem' }}>
+            <Typography variant="h5" component="h1" gutterBottom sx={{ color: theme.palette.primary.main, fontWeight: 700, fontSize: '2rem' }}>
               Workoo
             </Typography>
           </ListItem>
@@ -134,7 +137,7 @@ const AuthSidebar = () => {
             <ListItemIcon sx={{ color: getColor('/app/qualifications') }}>
               <GradeIcon />
             </ListItemIcon>
-            <ListItemText primary="Qualificationss" />
+            <ListItemText primary="Qualifications" />
           </ListItem>
 
           <ListItem button component={Link} to="/app/payments" sx={{ position: 'relative' }}>

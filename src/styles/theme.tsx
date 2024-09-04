@@ -1,20 +1,20 @@
-// src/theme.ts
 import { createTheme, ThemeOptions } from '@mui/material/styles';
 
-const themeOptions: ThemeOptions = {
-  palette: {
-    primary: {
-      main: '#1976d2',
+export const getTheme = (mode: 'light' | 'dark') => {
+  const themeOptions: ThemeOptions = {
+    palette: {
+      mode: mode,
+      primary: {
+        main: '#1976d2',
+      },
+      secondary: {
+        main: '#dc004e',
+      },
     },
-    secondary: {
-      main: '#dc004e',
+    typography: {
+      fontFamily: 'Roboto, sans-serif',
     },
-  },
-  typography: {
-    fontFamily: 'Roboto, sans-serif',
-  },
+  };
+
+  return createTheme(themeOptions);
 };
-
-const theme = createTheme(themeOptions);
-
-export default theme;
