@@ -16,6 +16,7 @@ const AuthButton: React.FC<AuthButtonProps> = ({ onClick, children, variant = 'f
   const muiVariant = variant === 'filled' || variant === 'elevated' || variant === 'tonal' ? 'contained' : variant;
 
   
+  
   const customStyles = {
     
     ...(disabled && {
@@ -31,6 +32,7 @@ const AuthButton: React.FC<AuthButtonProps> = ({ onClick, children, variant = 'f
       variant={muiVariant}
       color="primary"
       onClick={onClick}
+      disabled={disabled}
       sx={{
         borderRadius: '100px', 
         ...customStyles,
