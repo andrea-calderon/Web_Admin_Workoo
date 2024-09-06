@@ -1,8 +1,9 @@
 import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
-import { Box, Button, Container, CssBaseline, Typography } from '@mui/material';
+import { Box, Container, CssBaseline, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import AuthButton from './features/auth/components/atoms/AuthButton';
 import './styles/App.css';
 import { ThemeProvider } from './styles/contexts/ThemeProvider';
 import i18n from './utils/i18n';
@@ -43,14 +44,13 @@ const App: React.FC = () => {
                         WORKOO
                       </Typography>
 
-                      <Button 
-                        variant="contained" 
-                        color="primary" 
+                      <AuthButton 
+                        variant="filled" 
                         onClick={handleLogin}
                         sx={{ mt: 2 }}
                       >
                         Login
-                      </Button>
+                      </AuthButton>
                     </Box>
                   </Container>
                 )

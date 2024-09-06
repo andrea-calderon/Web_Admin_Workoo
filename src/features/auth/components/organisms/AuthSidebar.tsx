@@ -39,7 +39,7 @@ const AuthSidebar = () => {
     >
       <Box sx={{ overflow: 'auto' }}>
         <List>
-          <ListItem sx={{
+          <ListItem button component={Link} to="/app/home" sx={{
             display: 'flex',
             justifyContent: 'center',
             textAlign: 'center',
