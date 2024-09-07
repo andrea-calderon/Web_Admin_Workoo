@@ -1,4 +1,5 @@
 import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
+import RegisterPage from '@/features/auth/components/pages/RegisterPage';
 import { Box, Button, Container, CssBaseline, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
@@ -29,7 +30,7 @@ const App: React.FC = () => {
               path="/"
               element={
                 isAuthenticated ? (
-                  <Navigate to="/app/home" />
+                  <Navigate to="/register" />
                 ) : (
                   <Container maxWidth="sm">
                     <Box
@@ -66,6 +67,8 @@ const App: React.FC = () => {
                 )
               }
             />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </Router>
       </ThemeProvider>
@@ -74,4 +77,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-
