@@ -3,15 +3,25 @@ import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
 
-interface AuthInputFieldProps {
+type AuthInputFieldProps ={
   variant: 'outlined' | 'underlined' | 'rounded';
   label: string;
   placeholder: string;
   leftIcon?: React.ReactNode;
   actionIcon?: React.ReactNode;
+  error?: boolean;
+  helperText?: string;
 }
 
-const AuthInputField: React.FC<AuthInputFieldProps> = ({ variant, label, placeholder, leftIcon, actionIcon }) => {
+const AuthInputField: React.FC<AuthInputFieldProps> = ({ 
+  variant, 
+  label, 
+  placeholder, 
+  leftIcon, 
+  actionIcon,
+  error = false,
+  helperText, 
+}) => {
   const theme = useTheme(); 
 
  
@@ -30,6 +40,11 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({ variant, label, placeho
             '&.Mui-focused fieldset': {
               borderColor: theme.palette.primary.light,
             },
+            ...(error && {
+              '& fieldset': {
+                borderColor: theme.palette.error.main, 
+              },
+            }),
           },
         };
       case 'underlined':
@@ -43,6 +58,11 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({ variant, label, placeho
           '& .MuiInput-underline.Mui-focused:before': {
             borderBottomColor: theme.palette.secondary.light,
           },
+          ...(error && {
+            '&:before': {
+              borderBottomColor: theme.palette.error.main, 
+            },
+          }),
         };
       case 'rounded':
         return {
@@ -58,6 +78,11 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({ variant, label, placeho
             '&.Mui-focused fieldset': {
               borderColor: theme.palette.tertiary.light,
             },
+            ...(error && {
+              '& fieldset': {
+                borderColor: theme.palette.error.main,
+              },
+            }),
           },
         };
       default:
@@ -70,6 +95,8 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({ variant, label, placeho
       variant={variant === 'underlined' ? 'standard' : 'outlined'}
       label={label}
       placeholder={placeholder}
+      error={error}
+      helperText={helperText}
       InputProps={{
         startAdornment: leftIcon ? <InputAdornment position="start">{leftIcon}</InputAdornment> : null,
         endAdornment: actionIcon ? <InputAdornment position="end">{actionIcon}</InputAdornment> : null,
