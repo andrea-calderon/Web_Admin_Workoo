@@ -39,6 +39,17 @@ const RegisterPage = () => {
         leftIcon={<AccountCircleIcon />}
         actionIcon={<SearchIcon />} 
       />
+      <br/><br/>
+      
+      <AuthInputField
+        variant="outlined"  
+        label="Error"
+        placeholder="The username is incorrect"
+        leftIcon={<AccountCircleIcon />}  
+        actionIcon={<SearchIcon />} 
+        error={true}  
+        helperText="Username is required"  
+      />
     </Box>
   );
 };
