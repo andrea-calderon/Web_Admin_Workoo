@@ -2,15 +2,20 @@ import { CssBaseline, ThemeProvider as MUIThemeProvider } from '@mui/material';
 import React, { createContext, useContext, useMemo } from 'react';
 import { themes } from '../themes/index';
 
-
-type ThemeContextType = {
+type ThemeContextProps = {
   themeMode: 'light' | 'dark';
   toggleTheme: () => void;
 };
-const ThemeContext = createContext<ThemeContextType>({
-  themeMode: 'light',
-  toggleTheme: () => {},
-});
+const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+
+export const useThemeContext = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useThemeContext must be used within a ThemeProvider');
+  }
+  return context;
+};
+
 export const ThemeProvider: React.FC<{ 
   children: React.ReactNode; 
   themeMode: 'light' | 'dark'; 
