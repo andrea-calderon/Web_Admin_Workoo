@@ -1,4 +1,6 @@
 import { createTheme } from '@mui/material/styles';
+import { textTheme } from './textTheme';
+
 
 export const lightTheme = createTheme({
   palette: {
@@ -35,5 +37,8 @@ export const lightTheme = createTheme({
       primary: '#000000',
       secondary: '#49454F',
     },
+  },
+  typography: {
+    ...textTheme,
   },
 });
