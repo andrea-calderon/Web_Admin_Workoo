@@ -9,8 +9,9 @@ type AuthInputFieldProps ={
   placeholder: string;
   leftIcon?: React.ReactNode;
   actionIcon?: React.ReactNode;
-  error?: boolean;
+  errorMsg?: string;
   helperText?: string;
+  error?: boolean;
 }
 
 const AuthInputField: React.FC<AuthInputFieldProps> = ({ 
@@ -19,8 +20,9 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
   placeholder, 
   leftIcon, 
   actionIcon,
-  error = false,
+  errorMsg,
   helperText, 
+  error,
 }) => {
   const theme = useTheme(); 
 
@@ -95,8 +97,8 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
       variant={variant === 'underlined' ? 'standard' : 'outlined'}
       label={label}
       placeholder={placeholder}
-      error={error}
-      helperText={helperText}
+      error={error || !!errorMsg}
+      helperText={errorMsg || helperText}
       InputProps={{
         startAdornment: leftIcon ? <InputAdornment position="start">{leftIcon}</InputAdornment> : null,
         endAdornment: actionIcon ? <InputAdornment position="end">{actionIcon}</InputAdornment> : null,
