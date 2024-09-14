@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import AuthButton from '../atoms/AuthButton';
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
@@ -11,8 +12,8 @@ const LanguageSwitcher: React.FC = () => {
 
   return (
     <div>
-      <button onClick={() => changeLanguage('en')}>English</button>
-      <button onClick={() => changeLanguage('es')}>Español</button>
+      <AuthButton onClick={() => changeLanguage('en')}>English</AuthButton>
+      <AuthButton onClick={() => changeLanguage('es')}>Español</AuthButton>
     </div>
   );
 };

@@ -5,13 +5,13 @@ export const lightTheme = createTheme({
     mode: 'light',
     primary: {
       main: '#6750A4',
-      light: '#D0BCFF',
-      dark: '#21005D',
+      light: '#F7F2FA',
+      dark: '#6750A4',
       contrastText: '#FFFFFF',
     },
     secondary: {
       main: '#625B71',
-      light: '#CCC2DC',
+      light: '#E8DEF8',
       dark: '#1D192B',
       contrastText: '#FFFFFF',
     },
@@ -34,6 +34,25 @@ export const lightTheme = createTheme({
     text: {
       primary: '#000000',
       secondary: '#49454F',
+    },
+    action: {
+      disabledBackground: '#E3E0E3',
+      disabled: '#979598',
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: '100px', 
+        },
+        contained: {
+          '&.Mui-disabled': {
+            backgroundColor: '#E3E0E3',
+            color: '#979598',
+          },
+        },
+      },
     },
   },
 });

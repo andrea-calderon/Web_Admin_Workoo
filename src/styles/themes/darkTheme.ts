@@ -5,13 +5,13 @@ export const darkTheme = createTheme({
     mode: 'dark',
     primary: {
       main: '#D0BCFF',
-      light: '#F4EEFF',
-      dark: '#381E72',
+      light: '#25232A',
+      dark: '#D0BCFF',
       contrastText: '#000000',
     },
     secondary: {
       main: '#CCC2DC',
-      light: '#E8DEF8',
+      light: '#4A4458',
       dark: '#49454F',
       contrastText: '#000000',
     },
