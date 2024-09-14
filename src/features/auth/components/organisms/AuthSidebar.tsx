@@ -1,3 +1,4 @@
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import GradeIcon from '@mui/icons-material/Grade';
 import HomeIcon from '@mui/icons-material/Home';
@@ -210,6 +211,24 @@ const AuthSidebar = () => {
               <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Settings" />
+          </ListItem>
+
+          <ListItem button component={Link} to="/app/register" sx={{ position: 'relative' }}>
+            <Box
+              sx={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: '8px',
+                backgroundColor: getTabColor('/app/register'),
+                borderRadius: '0 4px 4px 0',
+              }}
+            />
+            <ListItemIcon sx={{ color: getColor('/app/register') }}>
+              <AppRegistrationIcon />
+            </ListItemIcon>
+            <ListItemText primary="Register" />
           </ListItem>
         </List>
       </Box>
