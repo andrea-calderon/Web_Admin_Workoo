@@ -40,6 +40,8 @@ const AuthButton: React.FC<AuthButtonProps> = ({ onClick, children, variant = 'f
           ? theme.palette.secondary.light 
           : variant === 'elevated'
           ? theme.palette.primary.light
+          : variant === 'filled'
+          ? theme.palette.primary.dark
           :undefined,
         color: variant === 'tonal' 
         ? theme.palette.text.primary 
