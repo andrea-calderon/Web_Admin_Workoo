@@ -1,16 +1,18 @@
-import { InputAdornment, TextField } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import React from 'react';
+import React, { useState } from 'react';
 
 type AuthInputFieldProps = {
   variant: 'outlined' | 'underlined' | 'rounded';
   label: string;
   placeholder: string;
   leftIcon?: React.ReactNode;
-  actionIcon?: React.ReactNode;
   errorMsg?: string;
   helperText?: string;
   error?: boolean;
+  type?: string;
 };
 
 const AuthInputField: React.FC<AuthInputFieldProps> = ({
@@ -18,12 +20,17 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
   label,
   placeholder,
   leftIcon,
-  actionIcon,
   errorMsg,
   helperText,
   error,
+  type = 'text',
 }) => {
   const theme = useTheme();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const getInputStyles = () => {
     switch (variant) {
@@ -98,15 +105,25 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
       variant={variant === 'underlined' ? 'standard' : 'outlined'}
       label={label}
       placeholder={placeholder}
+      type={type === 'password' && !showPassword ? 'password' : 'text'}
       error={error || !!errorMsg}
       helperText={errorMsg || helperText}
       InputProps={{
         startAdornment: leftIcon ? (
           <InputAdornment position="start">{leftIcon}</InputAdornment>
         ) : null,
-        endAdornment: actionIcon ? (
-          <InputAdornment position="end">{actionIcon}</InputAdornment>
-        ) : null,
+        endAdornment:
+          type === 'password' ? (
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleClickShowPassword}
+                onMouseDown={(e) => e.preventDefault()}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ) : null,
       }}
       sx={getInputStyles()}
     />
