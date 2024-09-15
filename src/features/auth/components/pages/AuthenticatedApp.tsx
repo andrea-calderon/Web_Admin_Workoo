@@ -10,7 +10,6 @@ import AuthSidebar from '../organisms/AuthSidebar';
 import HomePage from '@/features/auth/components/pages/HomePage';
 import DashboardPage from '@/features/dashboard/components/pages/DashboardPage';
 import SettingsPage from '@/features/dashboard/components/pages/SettingsPage';
-import RegisterPage from './RegisterPage';
 
 // Páginas internas
 import AnalysisPage from './AnalysisPage';
@@ -22,7 +21,6 @@ import SupportPage from './SupportPage';
 import UsersPage from './UsersPage';
 
 import { useTheme } from '@/styles/contexts/ThemeProvider';
-
 
 const AuthenticatedApp: React.FC = () => {
   const { toggleTheme, themeMode } = useTheme();
@@ -36,7 +34,7 @@ const AuthenticatedApp: React.FC = () => {
         sx={{
           flexGrow: 1,
           marginLeft: '240px',
-          marginTop: '64px',  
+          marginTop: '64px',
           position: 'relative',
         }}
       >
@@ -51,7 +49,6 @@ const AuthenticatedApp: React.FC = () => {
           <Route path="support" element={<SupportPage />} />
           <Route path="analysis" element={<AnalysisPage />} />
           <Route path="settings" element={<SettingsPage />} />
-          <Route path="register" element={<RegisterPage/>}/>
         </Routes>
       </Box>
     </Box>

@@ -1,4 +1,3 @@
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import GradeIcon from '@mui/icons-material/Grade';
 import HomeIcon from '@mui/icons-material/Home';
@@ -8,21 +7,32 @@ import PersonIcon from '@mui/icons-material/Person';
 import SettingsIcon from '@mui/icons-material/Settings';
 import StoreIcon from '@mui/icons-material/Store';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import { Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import {
+  Box,
+  Drawer,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-
 import { Link, useLocation } from 'react-router-dom';
 
 const AuthSidebar = () => {
-  const theme = useTheme()
+  const theme = useTheme();
   const location = useLocation();
 
   const getColor = (path: string): string => {
-    return location.pathname === path ? theme.palette.primary.main : theme.palette.text.secondary; 
+    return location.pathname === path
+      ? theme.palette.primary.main
+      : theme.palette.text.secondary;
   };
 
   const getTabColor = (path: string): string => {
-    return location.pathname === path ? theme.palette.primary.main : 'transparent'; 
+    return location.pathname === path
+      ? theme.palette.primary.main
+      : 'transparent';
   };
 
   return (
@@ -40,18 +50,35 @@ const AuthSidebar = () => {
     >
       <Box sx={{ overflow: 'auto' }}>
         <List>
-          <ListItem button component={Link} to="/app/home" sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            textAlign: 'center',
-            width: '100%',
-          }}>
-            <Typography variant="h5" component="h1" gutterBottom sx={{ color: theme.palette.primary.main, fontWeight: 700, fontSize: '2rem' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/home"
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              textAlign: 'center',
+              width: '100%',
+            }}
+          >
+            <Typography
+              variant="h5"
+              component="h1"
+              gutterBottom
+              sx={{
+                color: theme.palette.primary.main,
+                fontWeight: 700,
+                fontSize: '2rem',
+              }}
+            >
               Workoo
             </Typography>
-          </ListItem>
-          
-          <ListItem button component={Link} to="/app/dashboard" sx={{ position: 'relative' }}>
+          </ListItemButton>
+
+          <ListItemButton
+            component={Link}
+            to="/app/dashboard"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -60,16 +87,20 @@ const AuthSidebar = () => {
                 bottom: 0,
                 width: '8px',
                 backgroundColor: getTabColor('/app/dashboard'),
-                borderRadius: '0 4px 4px 0', 
+                borderRadius: '0 4px 4px 0',
               }}
             />
             <ListItemIcon sx={{ color: getColor('/app/dashboard') }}>
               <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/suppliers" sx={{ position: 'relative' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/suppliers"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -85,9 +116,13 @@ const AuthSidebar = () => {
               <LocalShippingIcon />
             </ListItemIcon>
             <ListItemText primary="Suppliers" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/users" sx={{ position: 'relative' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/users"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -103,9 +138,13 @@ const AuthSidebar = () => {
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Users" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/services" sx={{ position: 'relative' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/services"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -121,9 +160,13 @@ const AuthSidebar = () => {
               <StoreIcon />
             </ListItemIcon>
             <ListItemText primary="Services" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/qualifications" sx={{ position: 'relative' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/qualifications"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -139,9 +182,13 @@ const AuthSidebar = () => {
               <GradeIcon />
             </ListItemIcon>
             <ListItemText primary="Qualifications" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/payments" sx={{ position: 'relative' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/payments"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -157,9 +204,13 @@ const AuthSidebar = () => {
               <PaymentIcon />
             </ListItemIcon>
             <ListItemText primary="Payments" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/support" sx={{ position: 'relative' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/support"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -175,9 +226,13 @@ const AuthSidebar = () => {
               <SupportAgentIcon />
             </ListItemIcon>
             <ListItemText primary="Support" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/analysis" sx={{ position: 'relative' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/analysis"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -193,9 +248,13 @@ const AuthSidebar = () => {
               <BarChartIcon />
             </ListItemIcon>
             <ListItemText primary="Analysis" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/settings" sx={{ position: 'relative' }}>
+          <ListItemButton
+            component={Link}
+            to="/app/settings"
+            sx={{ position: 'relative' }}
+          >
             <Box
               sx={{
                 position: 'absolute',
@@ -211,9 +270,10 @@ const AuthSidebar = () => {
               <SettingsIcon />
             </ListItemIcon>
             <ListItemText primary="Settings" />
-          </ListItem>
+          </ListItemButton>
 
-          <ListItem button component={Link} to="/app/register" sx={{ position: 'relative' }}>
+          {/* Descomentar para incluir el enlace de registro */}
+          {/* <ListItemButton button component={Link} to="/app/register" sx={{ position: 'relative' }}>
             <Box
               sx={{
                 position: 'absolute',
@@ -229,7 +289,7 @@ const AuthSidebar = () => {
               <AppRegistrationIcon />
             </ListItemIcon>
             <ListItemText primary="Register" />
-          </ListItem>
+          </ListItemButton> */}
         </List>
       </Box>
     </Drawer>
