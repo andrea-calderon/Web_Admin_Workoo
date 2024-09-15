@@ -1,7 +1,7 @@
 import AuthButton from '@/features/auth/components/atoms/AuthButton';
 import AuthInputField from '@/features/auth/components/atoms/AuthInputField';
 import { Box, Container, Typography } from '@mui/material';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
@@ -9,16 +9,18 @@ type LoginProps = {
   onLogin: () => void;
 };
 
-const DEFAULT_CREDENTIALS = {
-  username: 'admin',
-  password: 'password123',
-};
+// const DEFAULT_CREDENTIALS = {
+//   username: 'admin',
+//   password: 'password123',
+// };
 
 const validationSchema = Yup.object({
-  username: Yup.string().required('Username is required'),
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required'),
+  username: Yup.string().matches(
+    /^[a-zA-Z0-9_]+$/,
+    'Username can only contain letters, numbers, and underscores',
+  ),
+
+  password: Yup.string().min(6, 'Password must be at least 6 characters'),
 });
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
@@ -63,17 +65,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         <Formik
           initialValues={{ username: '', password: '' }}
           validationSchema={validationSchema}
-          onSubmit={async (values, { setSubmitting, setFieldError }) => {
+          onSubmit={async (_, { setSubmitting, setFieldError }) => {
             try {
-              if (
-                values.username === DEFAULT_CREDENTIALS.username &&
-                values.password === DEFAULT_CREDENTIALS.password
-              ) {
-                onLogin();
-              } else {
-                setFieldError('username', 'Invalid username or password');
-                setFieldError('password', 'Invalid username or password');
-              }
+              // if (
+              //   values.username === DEFAULT_CREDENTIALS.username &&
+              //   values.password === DEFAULT_CREDENTIALS.password
+              // ) {
+              onLogin();
+              navigate('/app/home');
+              // } else {
+              //   setFieldError('username', 'Invalid username or password');
+              //   setFieldError('password', 'Invalid username or password');
+              // }
             } catch {
               setFieldError('username', 'An error occurred');
               setFieldError('password', 'An error occurred');
@@ -82,7 +85,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             }
           }}
         >
-          {({ isSubmitting }) => (
+          {({ isSubmitting, touched, errors }) => (
             <Form>
               <Box
                 sx={{
@@ -100,15 +103,16 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   variant="underlined"
                   label="Username"
                   placeholder="Enter your username"
-                  helperText={<ErrorMessage name="username" />}
-                  error={!!(<ErrorMessage name="username" />)}
+                  error={touched.username && !!errors.username}
+                  helperText={
+                    touched.username && errors.username ? errors.username : ''
+                  }
                   sx={{
                     width: '328px',
                     height: '48px',
                     opacity: 1,
                   }}
                 />
-                <Box></Box>
               </Box>
               <Box
                 sx={{
@@ -127,15 +131,16 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   variant="underlined"
                   label="Password"
                   placeholder="Enter your password"
-                  helperText={<ErrorMessage name="password" />}
-                  error={!!(<ErrorMessage name="password" />)}
+                  error={touched.password && !!errors.password}
+                  helperText={
+                    touched.password && errors.password ? errors.password : ''
+                  }
                   sx={{
                     width: '328px',
                     height: '48px',
                     opacity: 1,
                   }}
                 />
-                <Box></Box>
               </Box>
               <Box
                 sx={{
@@ -151,7 +156,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   variant="filled"
                   fullWidth={true}
                   disabled={isSubmitting}
-                  onClick={() => navigate('/app')}
+                  onClick={() => {}}
                   sx={{
                     minWidth: '328px',
                     height: '48px',
@@ -171,7 +176,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 }}
               >
                 <AuthButton
-                  type="submit"
+                  type="button"
                   variant="text"
                   fullWidth={true}
                   onClick={() => console.log('Button clicked!')}
@@ -206,7 +211,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   Haven’t an account?
                 </Typography>
                 <AuthButton
-                  type="submit"
+                  type="button"
                   variant="text"
                   fullWidth={true}
                   onClick={() => navigate('/register')}

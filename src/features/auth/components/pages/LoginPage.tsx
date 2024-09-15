@@ -1,9 +1,14 @@
+import React from 'react';
 
-const LoginPage = () => {
+interface LoginPageProps {
+  onLogin: () => void;
+}
+
+const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
   return (
     <div>
-      <h1>Login Page</h1>
-      {/* Here we can add the login form and other elements */}
+      {/* Tu código para el LoginPage */}
+      <button onClick={onLogin}>Login</button>
     </div>
   );
 };
