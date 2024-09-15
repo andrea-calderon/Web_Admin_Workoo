@@ -2,8 +2,7 @@ import { InputAdornment, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React from 'react';
 
-
-type AuthInputFieldProps ={
+type AuthInputFieldProps = {
   variant: 'outlined' | 'underlined' | 'rounded';
   label: string;
   placeholder: string;
@@ -12,26 +11,26 @@ type AuthInputFieldProps ={
   errorMsg?: string;
   helperText?: string;
   error?: boolean;
-}
+};
 
-const AuthInputField: React.FC<AuthInputFieldProps> = ({ 
-  variant, 
-  label, 
-  placeholder, 
-  leftIcon, 
+const AuthInputField: React.FC<AuthInputFieldProps> = ({
+  variant,
+  label,
+  placeholder,
+  leftIcon,
   actionIcon,
   errorMsg,
-  helperText, 
+  helperText,
   error,
 }) => {
-  const theme = useTheme(); 
+  const theme = useTheme();
 
- 
   const getInputStyles = () => {
     switch (variant) {
       case 'outlined':
         return {
           borderRadius: '8px',
+          width: '100%',
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
               borderColor: theme.palette.primary.main,
@@ -44,13 +43,14 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
             },
             ...(error && {
               '& fieldset': {
-                borderColor: theme.palette.error.main, 
+                borderColor: theme.palette.error.main,
               },
             }),
           },
         };
       case 'underlined':
         return {
+          width: '100%',
           '& .MuiInput-underline:before': {
             borderBottomColor: theme.palette.secondary.main,
           },
@@ -62,13 +62,14 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
           },
           ...(error && {
             '&:before': {
-              borderBottomColor: theme.palette.error.main, 
+              borderBottomColor: theme.palette.error.main,
             },
           }),
         };
       case 'rounded':
         return {
           borderRadius: '100px',
+          width: '100%',
           '& .MuiOutlinedInput-root': {
             borderRadius: '100px',
             '& fieldset': {
@@ -100,8 +101,12 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
       error={error || !!errorMsg}
       helperText={errorMsg || helperText}
       InputProps={{
-        startAdornment: leftIcon ? <InputAdornment position="start">{leftIcon}</InputAdornment> : null,
-        endAdornment: actionIcon ? <InputAdornment position="end">{actionIcon}</InputAdornment> : null,
+        startAdornment: leftIcon ? (
+          <InputAdornment position="start">{leftIcon}</InputAdornment>
+        ) : null,
+        endAdornment: actionIcon ? (
+          <InputAdornment position="end">{actionIcon}</InputAdornment>
+        ) : null,
       }}
       sx={getInputStyles()}
     />
