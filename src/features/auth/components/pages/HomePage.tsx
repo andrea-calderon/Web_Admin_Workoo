@@ -1,6 +1,7 @@
+import TextAtom from '@/features/components/TextAtom';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import AuthButton from '../atoms/AuthButton';
+
 
 const HomePage: React.FC = () => {
   return (
@@ -12,29 +13,15 @@ const HomePage: React.FC = () => {
         You can navigate to other sections using the sidebar or Click in on the `Workoo` text to return to `home`.
       </Typography>
       <br/>
-      <AuthButton variant="elevated" onClick={() => console.log('Clicked!')}>
-        Elevated Button
-      </AuthButton>
-      <br/><br/>
-      <AuthButton variant="text" onClick={() => console.log('Clicked!')}>
-        Text Button
-      </AuthButton>
-      <br/><br/>
-      <AuthButton variant="filled" onClick={() => console.log('Clicked!')}>
-        Filled Button
-      </AuthButton>
-      <br/><br/>
-      <AuthButton variant="outlined" onClick={() => console.log('Clicked!')}>
-        Outlined Button
-      </AuthButton>
-      <br/><br/>
-      <AuthButton variant="tonal" onClick={() => console.log('Clicked!')}>
-        Tonal Button
-      </AuthButton>
-      <br/><br />
-      <AuthButton variant="filled" onClick={() => console.log('Disabled Button Clicked!')} disabled>
-        Disabled Button
-      </AuthButton>
+      <div>
+        <TextAtom variant="title" size='large'>Examples of Text Atom:</TextAtom>
+        <br/>
+        <TextAtom variant="display" size="large">Display Large Example</TextAtom>
+        <br/>
+        <TextAtom variant="headline" size="medium">Headline Medium Example</TextAtom>
+        <br/>
+        <TextAtom variant="body" size="small">Body Small Example</TextAtom>
+      </div>
     </Box>
   );
 };
