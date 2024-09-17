@@ -24,6 +24,7 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
   helperText,
   error,
   type = 'text',
+  ...props
 }) => {
   const theme = useTheme();
   const [showPassword, setShowPassword] = useState(false);
@@ -108,6 +109,7 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
       type={type === 'password' && !showPassword ? 'password' : 'text'}
       error={error || !!errorMsg}
       helperText={errorMsg || helperText}
+      {...props}
       InputProps={{
         startAdornment: leftIcon ? (
           <InputAdornment position="start">{leftIcon}</InputAdornment>
