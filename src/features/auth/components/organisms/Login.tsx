@@ -1,6 +1,6 @@
 import AuthButton from '@/features/auth/components/atoms/AuthButton';
 import AuthInputField from '@/features/auth/components/atoms/AuthInputField';
-import { Box, Container, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -9,18 +9,22 @@ type LoginProps = {
   onLogin: () => void;
 };
 
-// const DEFAULT_CREDENTIALS = {
-//   username: 'admin',
-//   password: 'password123',
-// };
+const DEFAULT_CREDENTIALS = {
+  username: 'admin',
+  password: 'password123',
+};
 
 const validationSchema = Yup.object({
-  username: Yup.string().matches(
-    /^[a-zA-Z0-9_]+$/,
-    'Username can only contain letters, numbers, and underscores',
-  ),
+  username: Yup.string()
+    .matches(
+      /^[a-zA-Z0-9_]+$/,
+      'Username can only contain letters, numbers, and underscores',
+    )
+    .required('Username is required'),
 
-  password: Yup.string().min(6, 'Password must be at least 6 characters'),
+  password: Yup.string()
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
 });
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
@@ -28,9 +32,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
   return (
     <Container
+      maxWidth="sm"
       sx={{
-        width: '100%',
         height: '100vh',
+        width: '100%',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -39,44 +44,55 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     >
       <Box
         sx={{
-          width: '483px',
-          height: '100vh',
-          padding: '40px',
+          width: '100%',
+          height: '100%',
+          maxWidth: '483px',
+          padding: 0,
           bgcolor: '#fff',
           boxShadow: 3,
           display: 'flex',
           flexDirection: 'column',
+          justifyContent: 'center',
           alignItems: 'center',
         }}
       >
-        <Typography
-          variant="h3"
+        <Box
           sx={{
-            color: '#6750A4',
-            fontWeight: 'bold',
-            marginTop: '143px',
-            //marginLeft: '1114px',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
             gap: '10px',
+            width: '181.47px',
+            height: '36.9px',
           }}
         >
-          Workoo
-        </Typography>
-
+          <Typography
+            variant="h3"
+            sx={{
+              color: '#6750A4',
+              fontWeight: 'bold',
+            }}
+          >
+            Workoo
+          </Typography>
+        </Box>
+        <Box sx={{ height: '194px' }} />
         <Formik
           initialValues={{ username: '', password: '' }}
           validationSchema={validationSchema}
-          onSubmit={async (_, { setSubmitting, setFieldError }) => {
+          onSubmit={async (values, { setSubmitting, setFieldError }) => {
             try {
-              // if (
-              //   values.username === DEFAULT_CREDENTIALS.username &&
-              //   values.password === DEFAULT_CREDENTIALS.password
-              // ) {
-              onLogin();
-              navigate('/app/home');
-              // } else {
-              //   setFieldError('username', 'Invalid username or password');
-              //   setFieldError('password', 'Invalid username or password');
-              // }
+              if (
+                values.username === DEFAULT_CREDENTIALS.username &&
+                values.password === DEFAULT_CREDENTIALS.password
+              ) {
+                onLogin();
+                navigate('/app/home');
+              } else {
+                setFieldError('username', 'Invalid username or password');
+                setFieldError('password', 'Invalid username or password');
+              }
             } catch {
               setFieldError('username', 'An error occurred');
               setFieldError('password', 'An error occurred');
@@ -86,144 +102,92 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           }}
         >
           {({ isSubmitting, touched, errors }) => (
-            <Form>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '337px',
-                  left: '800px',
-                  gap: '8px',
-                  opacity: 1,
-                  width: '328px',
-                }}
+            <Form style={{ width: '328px' }}>
+              <Grid
+                container
+                spacing={3}
+                direction="column"
+                justifyContent="center"
               >
-                <Field
-                  as={AuthInputField}
-                  name="username"
-                  variant="underlined"
-                  label="Username"
-                  placeholder="Enter your username"
-                  error={touched.username && !!errors.username}
-                  helperText={
-                    touched.username && errors.username ? errors.username : ''
-                  }
+                <Grid item xs={12}>
+                  <Field
+                    as={AuthInputField}
+                    name="username"
+                    variant="underlined"
+                    label="Username"
+                    placeholder="Enter your username"
+                    error={touched.username && !!errors.username}
+                    helperText={
+                      touched.username && errors.username ? errors.username : ''
+                    }
+                    fullWidth
+                    sx={{ width: '100%', maxWidth: '328px' }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Field
+                    as={AuthInputField}
+                    name="password"
+                    type="password"
+                    variant="underlined"
+                    label="Password"
+                    placeholder="Enter your password"
+                    error={touched.password && !!errors.password}
+                    helperText={
+                      touched.password && errors.password ? errors.password : ''
+                    }
+                    fullWidth
+                    sx={{ width: '100%', maxWidth: '328px' }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <AuthButton
+                    type="submit"
+                    variant="filled"
+                    fullWidth
+                    disabled={isSubmitting}
+                    onClick={() => {}}
+                    sx={{ mt: 2, width: '100%', maxWidth: '328px' }}
+                  >
+                    Log In
+                  </AuthButton>
+                </Grid>
+                <Grid item xs={12}>
+                  <AuthButton
+                    type="button"
+                    variant="text"
+                    fullWidth
+                    onClick={() => console.log('Button clicked!')}
+                    sx={{ width: '100%', maxWidth: '328px' }}
+                  >
+                    Forget Password?
+                  </AuthButton>
+                </Grid>
+                <Box sx={{ height: '191px' }} />
+                <Grid
+                  item
+                  xs={12}
                   sx={{
-                    width: '328px',
-                    height: '48px',
-                    opacity: 1,
-                  }}
-                />
-              </Box>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '409px',
-                  left: '800px',
-                  gap: '8px',
-                  opacity: 1,
-                  width: '328px',
-                }}
-              >
-                <Field
-                  as={AuthInputField}
-                  name="password"
-                  type="password"
-                  variant="underlined"
-                  label="Password"
-                  placeholder="Enter your password"
-                  error={touched.password && !!errors.password}
-                  helperText={
-                    touched.password && errors.password ? errors.password : ''
-                  }
-                  sx={{
-                    width: '328px',
-                    height: '48px',
-                    opacity: 1,
-                  }}
-                />
-              </Box>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '490px',
-                  left: '800px',
-                  gap: '8px',
-                  opacity: 1,
-                }}
-              >
-                <AuthButton
-                  type="submit"
-                  variant="filled"
-                  fullWidth={true}
-                  disabled={isSubmitting}
-                  onClick={() => {}}
-                  sx={{
-                    minWidth: '328px',
-                    height: '48px',
-                    opacity: 1,
-                  }}
-                >
-                  Log In
-                </AuthButton>
-              </Box>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '550px',
-                  left: '800px',
-                  gap: '8px',
-                  opacity: 1,
-                }}
-              >
-                <AuthButton
-                  type="button"
-                  variant="text"
-                  fullWidth={true}
-                  onClick={() => console.log('Button clicked!')}
-                  sx={{
-                    minWidth: '328px',
-                    height: '48px',
-                    opacity: 1,
-                  }}
-                >
-                  Forget Password?
-                </AuthButton>
-              </Box>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '741px',
-                  left: '850px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  opacity: 1,
-                }}
-              >
-                <Typography
-                  sx={{
-                    width: 'auto',
-                    height: '20px',
-                    opacity: 1,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     textAlign: 'center',
                   }}
                 >
-                  Haven’t an account?
-                </Typography>
-                <AuthButton
-                  type="button"
-                  variant="text"
-                  fullWidth={true}
-                  onClick={() => navigate('/register')}
-                  sx={{
-                    width: '77px',
-                    height: '48px',
-                    opacity: 1,
-                  }}
-                >
-                  <a href="#"> Sign up</a>
-                </AuthButton>
-              </Box>
+                  <Typography>
+                    Haven’t an account?
+                    <AuthButton
+                      type="button"
+                      variant="text"
+                      onClick={() => navigate('/register')}
+                      sx={{ ml: 1 }}
+                    >
+                      Sign up
+                    </AuthButton>
+                  </Typography>
+                </Grid>
+              </Grid>
             </Form>
           )}
         </Formik>
