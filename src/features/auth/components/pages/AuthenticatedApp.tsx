@@ -20,10 +20,10 @@ import SuppliersPage from './SuppliersPage';
 import SupportPage from './SupportPage';
 import UsersPage from './UsersPage';
 
-import { useTheme } from '@/styles/contexts/ThemeProvider';
+import { useThemeContext } from '@/styles/contexts/ThemeProvider';
 
 const AuthenticatedApp: React.FC = () => {
-  const { toggleTheme, themeMode } = useTheme();
+  const { toggleTheme, themeMode } = useThemeContext();
   return (
     <Box sx={{ display: 'flex', height: '100vh' }}>
       <CssBaseline />

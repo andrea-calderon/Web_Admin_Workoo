@@ -15,6 +15,7 @@ import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp'
 import RegisterForm from './features/auth/components/organisms/RegisterForm';
 
 // Configuración de estilos
+import './styles/App.css';
 import { ThemeProvider } from './styles/contexts/ThemeProvider';
 import i18n from './utils/i18n';
 

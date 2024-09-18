@@ -1,6 +1,7 @@
 import AuthButton from '@/features/auth/components/atoms/AuthButton';
 import AuthInputField from '@/features/auth/components/atoms/AuthInputField';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import TextAtom from '@/features/components/TextAtom';
+import { Box, Container, Grid } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -80,15 +81,16 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             height: '36.9px',
           }}
         >
-          <Typography
-            variant="h3"
+          <TextAtom
+            variant="display"
+            size="large"
             sx={{
               color: '#6750A4',
               fontWeight: 'bold',
             }}
           >
             Workoo
-          </Typography>
+          </TextAtom>
         </Box>
         <Box sx={{ height: '194px' }} />
         <Formik
@@ -201,7 +203,11 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     textAlign: 'center',
                   }}
                 >
-                  <Typography>
+                  <TextAtom
+                    variant="body"
+                    size="small"
+                    sx={{ textAlign: 'center' }}
+                  >
                     {t('loginScreen.have_not_account')}
                     <AuthButton
                       type="button"
@@ -211,7 +217,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     >
                       {t('loginScreen.signup_title_button')}
                     </AuthButton>
-                  </Typography>
+                  </TextAtom>
                 </Grid>
               </Grid>
             </Form>

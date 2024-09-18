@@ -44,5 +44,61 @@ export const textTheme: TypographyOptions = {
     lineHeight: '32px',
     letterSpacing: '0px',
   },
+  titleLarge: {
+    fontFamily: 'Roboto',
+    fontSize: '22px',
+    lineHeight: '28px',
+    letterSpacing: '0px',
+  },
+  titleMedium: {
+    fontFamily: 'Roboto',
+    fontSize: '16px',
+    lineHeight: '24px',
+    letterSpacing: '0.15px',
+  },
+  titleSmall: {
+    fontFamily: 'Roboto',
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '0.1px',
+  },
+  labelLarge: {
+    fontFamily: 'Roboto',
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '0.1px',
+  },
+  labelMedium: {
+    fontFamily: 'Roboto',
+    fontSize: '12px',
+    lineHeight: '16px',
+    letterSpacing: '0.5px',
+  },
+  labelSmall: {
+    fontFamily: 'Roboto',
+    fontSize: '11px',
+    lineHeight: '16px',
+    letterSpacing: '0.5px',
+  },
+  bodyLarge: {
+    fontFamily: 'Roboto',
+    fontSize: '16px',
+    lineHeight: '24px',
+    letterSpacing: '0.5px',
+  },
+  bodyMedium: {
+    fontFamily: 'Roboto',
+    fontSize: '14px',
+    lineHeight: '20px',
+    letterSpacing: '0.25px',
+  },
+  bodySmall: {
+    fontFamily: 'Roboto',
+    fontSize: '12px',
+    lineHeight: '16px',
+    letterSpacing: '0.4px',
+  },
+}
+
   
-};
+

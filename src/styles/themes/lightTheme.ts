@@ -60,8 +60,6 @@ export const lightTheme = createTheme({
   typography: {
     ...textTheme,
   },
-  typography: {
-    ...textTheme,
-  },
+  
 });
   

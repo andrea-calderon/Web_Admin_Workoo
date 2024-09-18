@@ -1,3 +1,4 @@
+import TextAtom from '@/features/components/TextAtom';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
@@ -108,7 +109,17 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
       placeholder={placeholder}
       type={type === 'password' && !showPassword ? 'password' : 'text'}
       error={error || !!errorMsg}
-      helperText={errorMsg || helperText}
+      helperText={
+        errorMsg ? (
+          <TextAtom variant="body" size="small">
+            {errorMsg}
+          </TextAtom>
+        ) : helperText ? (
+          <TextAtom variant="body" size="small">
+            {helperText}
+          </TextAtom>
+        ) : undefined
+      }
       {...props}
       InputProps={{
         startAdornment: leftIcon ? (
