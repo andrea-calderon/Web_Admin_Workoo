@@ -1,3 +1,4 @@
+import TextAtom from '@/features/components/TextAtom';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import GradeIcon from '@mui/icons-material/Grade';
 import HomeIcon from '@mui/icons-material/Home';
@@ -14,7 +15,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Typography,
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Link, useLocation } from 'react-router-dom';
@@ -60,18 +60,16 @@ const AuthSidebar = () => {
               width: '100%',
             }}
           >
-            <Typography
-              variant="h5"
-              component="h1"
-              gutterBottom
+            <TextAtom
+              variant="headline"
+              size="large"
               sx={{
                 color: theme.palette.primary.main,
                 fontWeight: 700,
-                fontSize: '2rem',
               }}
             >
               Workoo
-            </Typography>
+            </TextAtom>
           </ListItemButton>
 
           <ListItemButton
@@ -271,25 +269,6 @@ const AuthSidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Settings" />
           </ListItemButton>
-
-          {/* Descomentar para incluir el enlace de registro */}
-          {/* <ListItemButton button component={Link} to="/app/register" sx={{ position: 'relative' }}>
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                top: 0,
-                bottom: 0,
-                width: '8px',
-                backgroundColor: getTabColor('/app/register'),
-                borderRadius: '0 4px 4px 0',
-              }}
-            />
-            <ListItemIcon sx={{ color: getColor('/app/register') }}>
-              <AppRegistrationIcon />
-            </ListItemIcon>
-            <ListItemText primary="Register" />
-          </ListItemButton> */}
         </List>
       </Box>
     </Drawer>
