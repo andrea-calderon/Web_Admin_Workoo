@@ -1,4 +1,14 @@
 {
-  "welcome": "Bienvenido!",
-  "login": "Iniciar sesión"
+  "loginScreen":{
+    "usernameLabel": "Nombre de usuario",
+    "usernamePlaceholder": "Introduce tu nombre de usuario",
+    "passwordLabel": "Contraseña",
+    "passwordPlaceholder": "Introduce tu contraseña",
+    "invalidCredentials": "Nombre de usuario o contraseña incorrectos",
+    "errorOccurred": "Ocurrió un error",
+    "login_title_button": "Acceder",
+    "forget_password": "Olvidaste la contraseña?",
+    "have_not_account": "No tienes una cuenta?",
+    "signup_title_button": "Registrarse"
+  }
 }

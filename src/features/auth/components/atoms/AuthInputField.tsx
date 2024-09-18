@@ -1,37 +1,45 @@
-import { InputAdornment, TextField } from '@mui/material';
+import TextAtom from '@/features/components/TextAtom';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
-import React from 'react';
+import React, { useState } from 'react';
 
-
-type AuthInputFieldProps ={
+type AuthInputFieldProps = {
   variant: 'outlined' | 'underlined' | 'rounded';
   label: string;
   placeholder: string;
   leftIcon?: React.ReactNode;
-  actionIcon?: React.ReactNode;
   errorMsg?: string;
   helperText?: string;
   error?: boolean;
-}
+  type?: string;
+};
 
-const AuthInputField: React.FC<AuthInputFieldProps> = ({ 
-  variant, 
-  label, 
-  placeholder, 
-  leftIcon, 
-  actionIcon,
+const AuthInputField: React.FC<AuthInputFieldProps> = ({
+  variant,
+  label,
+  placeholder,
+  leftIcon,
   errorMsg,
-  helperText, 
+  helperText,
   error,
+  type = 'text',
+  ...props
 }) => {
-  const theme = useTheme(); 
+  const theme = useTheme();
+  const [showPassword, setShowPassword] = useState(false);
 
- 
+  const handleClickShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
+
   const getInputStyles = () => {
     switch (variant) {
       case 'outlined':
         return {
           borderRadius: '8px',
+          width: '100%',
           '& .MuiOutlinedInput-root': {
             '& fieldset': {
               borderColor: theme.palette.primary.main,
@@ -44,13 +52,14 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
             },
             ...(error && {
               '& fieldset': {
-                borderColor: theme.palette.error.main, 
+                borderColor: theme.palette.error.main,
               },
             }),
           },
         };
       case 'underlined':
         return {
+          width: '100%',
           '& .MuiInput-underline:before': {
             borderBottomColor: theme.palette.secondary.main,
           },
@@ -62,13 +71,14 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
           },
           ...(error && {
             '&:before': {
-              borderBottomColor: theme.palette.error.main, 
+              borderBottomColor: theme.palette.error.main,
             },
           }),
         };
       case 'rounded':
         return {
           borderRadius: '100px',
+          width: '100%',
           '& .MuiOutlinedInput-root': {
             borderRadius: '100px',
             '& fieldset': {
@@ -97,11 +107,36 @@ const AuthInputField: React.FC<AuthInputFieldProps> = ({
       variant={variant === 'underlined' ? 'standard' : 'outlined'}
       label={label}
       placeholder={placeholder}
+      type={type === 'password' && !showPassword ? 'password' : 'text'}
       error={error || !!errorMsg}
-      helperText={errorMsg || helperText}
+      helperText={
+        errorMsg ? (
+          <TextAtom variant="body" size="small">
+            {errorMsg}
+          </TextAtom>
+        ) : helperText ? (
+          <TextAtom variant="body" size="small">
+            {helperText}
+          </TextAtom>
+        ) : undefined
+      }
+      {...props}
       InputProps={{
-        startAdornment: leftIcon ? <InputAdornment position="start">{leftIcon}</InputAdornment> : null,
-        endAdornment: actionIcon ? <InputAdornment position="end">{actionIcon}</InputAdornment> : null,
+        startAdornment: leftIcon ? (
+          <InputAdornment position="start">{leftIcon}</InputAdornment>
+        ) : null,
+        endAdornment:
+          type === 'password' ? (
+            <InputAdornment position="end">
+              <IconButton
+                onClick={handleClickShowPassword}
+                onMouseDown={(e) => e.preventDefault()}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ) : null,
       }}
       sx={getInputStyles()}
     />

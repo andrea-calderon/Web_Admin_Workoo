@@ -1,4 +1,14 @@
 {
-  "welcome": "Welcome!",
-  "login": "Login"
+  "loginScreen":{
+    "usernameLabel": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "invalidCredentials": "Invalid username or password",
+    "errorOccurred": "An error occurred",
+    "login_title_button": "Log In",
+    "forget_password": "Forget Password?",
+    "have_not_account": "Haven't an account?",
+    "signup_title_button": "Sign Up"
+  }
 }
