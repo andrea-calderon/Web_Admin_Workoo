@@ -2,8 +2,10 @@ import AuthButton from '@/features/auth/components/atoms/AuthButton';
 import AuthInputField from '@/features/auth/components/atoms/AuthInputField';
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import LanguageSwitcher from '../molecules/LanguajeSwitcher';
 
 type LoginProps = {
   onLogin: () => void;
@@ -29,6 +31,7 @@ const validationSchema = Yup.object({
 
 const Login: React.FC<LoginProps> = ({ onLogin }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <Container
@@ -40,8 +43,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         justifyContent: 'center',
         alignItems: 'center',
         bgcolor: '#F4F4F4',
+        position: 'relative',
       }}
     >
+      <LanguageSwitcher
+        sx={{
+          position: 'absolute',
+          top: 16,
+          right: 75,
+          zIndex: 1000,
+        }}
+      />
+
       <Box
         sx={{
           width: '100%',
@@ -90,12 +103,12 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 onLogin();
                 navigate('/app/home');
               } else {
-                setFieldError('username', 'Invalid username or password');
-                setFieldError('password', 'Invalid username or password');
+                setFieldError('username', t('loginScreen.invalidCredentials'));
+                setFieldError('password', t('loginScreen.invalidCredentials'));
               }
             } catch {
-              setFieldError('username', 'An error occurred');
-              setFieldError('password', 'An error occurred');
+              setFieldError('username', t('loginScreen.errorOccurred'));
+              setFieldError('password', t('loginScreen.errorOccurred'));
             } finally {
               setSubmitting(false);
             }
@@ -114,11 +127,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     as={AuthInputField}
                     name="username"
                     variant="underlined"
-                    label="Username"
-                    placeholder="Enter your username"
+                    label={t('loginScreen.usernameLabel')}
+                    placeholder={t('loginScreen.usernamePlaceholder')}
                     error={touched.username && !!errors.username}
                     helperText={
-                      touched.username && errors.username ? errors.username : ''
+                      touched.username && errors.username
+                        ? t('loginScreen.invalidCredentials')
+                        : ''
                     }
                     fullWidth
                     sx={{ width: '100%', maxWidth: '328px' }}
@@ -130,11 +145,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     name="password"
                     type="password"
                     variant="underlined"
-                    label="Password"
-                    placeholder="Enter your password"
+                    label={t('loginScreen.passwordLabel')}
+                    placeholder={t('loginScreen.passwordPlaceholder')}
                     error={touched.password && !!errors.password}
                     helperText={
-                      touched.password && errors.password ? errors.password : ''
+                      touched.password && errors.password
+                        ? t('loginScreen.invalidCredentials')
+                        : ''
                     }
                     fullWidth
                     sx={{ width: '100%', maxWidth: '328px' }}
@@ -147,9 +164,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     fullWidth
                     disabled={isSubmitting}
                     onClick={() => {}}
-                    sx={{ mt: 2, width: '100%', maxWidth: '328px' }}
+                    sx={{
+                      mt: 2,
+                      width: '100%',
+                      maxWidth: '328px',
+                      textTransform: 'none',
+                    }}
                   >
-                    Log In
+                    {t('loginScreen.login_title_button')}
                   </AuthButton>
                 </Grid>
                 <Grid item xs={12}>
@@ -158,9 +180,13 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     variant="text"
                     fullWidth
                     onClick={() => console.log('Button clicked!')}
-                    sx={{ width: '100%', maxWidth: '328px' }}
+                    sx={{
+                      width: '100%',
+                      maxWidth: '328px',
+                      textTransform: 'none',
+                    }}
                   >
-                    Forget Password?
+                    {t('loginScreen.forget_password')}
                   </AuthButton>
                 </Grid>
                 <Box sx={{ height: '191px' }} />
@@ -176,14 +202,14 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   }}
                 >
                   <Typography>
-                    Haven’t an account?
+                    {t('loginScreen.have_not_account')}
                     <AuthButton
                       type="button"
                       variant="text"
                       onClick={() => navigate('/register')}
-                      sx={{ ml: 1 }}
+                      sx={{ ml: 1, textTransform: 'none' }}
                     >
-                      Sign up
+                      {t('loginScreen.signup_title_button')}
                     </AuthButton>
                   </Typography>
                 </Grid>

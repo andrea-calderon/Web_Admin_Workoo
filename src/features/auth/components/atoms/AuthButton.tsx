@@ -20,6 +20,7 @@ const AuthButton: React.FC<AuthButtonProps> = ({
   sx,
   type = 'button',
   fullWidth,
+  ...props
 }) => {
   const theme = useTheme();
 
@@ -44,6 +45,7 @@ const AuthButton: React.FC<AuthButtonProps> = ({
       disabled={disabled}
       type={type}
       fullWidth={fullWidth}
+      {...props}
       sx={{
         borderRadius: '100px',
         ...customStyles,

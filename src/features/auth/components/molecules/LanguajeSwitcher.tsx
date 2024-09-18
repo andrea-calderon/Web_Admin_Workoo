@@ -1,20 +1,24 @@
+import { SxProps } from '@mui/system';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import AuthButton from '../atoms/AuthButton';
 
-const LanguageSwitcher: React.FC = () => {
+interface LanguageSwitcherProps {
+  sx?: SxProps;
+}
+
+const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ sx }) => {
   const { i18n } = useTranslation();
 
-  const changeLanguage = (lng: string) => {
-    //console.log(`Changing language to: ${lng}`);
-    i18n.changeLanguage(lng);
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'es' : 'en';
+    i18n.changeLanguage(newLang);
   };
 
   return (
-    <div>
-      <AuthButton onClick={() => changeLanguage('en')}>English</AuthButton>
-      <AuthButton onClick={() => changeLanguage('es')}>Español</AuthButton>
-    </div>
+    <AuthButton variant="tonal" onClick={toggleLanguage} sx={sx}>
+      {i18n.language === 'en' ? 'Español' : 'English'}
+    </AuthButton>
   );
 };
 
