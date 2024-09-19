@@ -14,11 +14,11 @@ const InitialPage: React.FC<InitialPageProps> = ({ onLogin }) => {
   const [view, setView] = useState<'login' | 'signup'>('login');
 
   return (
-    <Grid container sx={{ height: '100vh' }}>
+    <Grid container sx={{ height: '100vh', width: '100vw' }}>
       <Grid
         item
         xs={12}
-        md={6}
+        md={8}
         sx={{
           backgroundColor: '#F4F4F4',
           display: 'flex',
@@ -70,14 +70,15 @@ const InitialPage: React.FC<InitialPageProps> = ({ onLogin }) => {
       <Grid
         item
         xs={12}
-        md={6}
+        md={4}
         sx={{
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '40px',
+          padding: 0,
           backgroundColor: '#fff',
+          position: 'relative',
         }}
       >
         {view === 'login' ? (

@@ -6,7 +6,6 @@ import { Field, Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import LanguageSwitcher from './../molecules/LanguajeSwitcher';
 
 interface SignupProps {
   onSwitchToLogin: () => void;
@@ -47,7 +46,7 @@ const Signup: React.FC<SignupProps> = ({ onSwitchToLogin }) => {
       maxWidth="sm"
       sx={{
         height: '100vh',
-        width: '100%',
+        width: '100vw',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -55,15 +54,6 @@ const Signup: React.FC<SignupProps> = ({ onSwitchToLogin }) => {
         position: 'relative',
       }}
     >
-      <LanguageSwitcher
-        sx={{
-          position: 'absolute',
-          top: 16,
-          right: 75,
-          zIndex: 1000,
-        }}
-      />
-
       <Box
         sx={{
           width: '100%',
@@ -71,7 +61,7 @@ const Signup: React.FC<SignupProps> = ({ onSwitchToLogin }) => {
           maxWidth: '483px',
           padding: 0,
           bgcolor: '#fff',
-          boxShadow: 1,
+          boxShadow: 0,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -126,7 +116,7 @@ const Signup: React.FC<SignupProps> = ({ onSwitchToLogin }) => {
           }}
         >
           {({ isSubmitting, touched, errors }) => (
-            <Form style={{ width: '328px' }}>
+            <Form style={{ width: '350px' }}>
               <Grid
                 container
                 spacing={1.5}

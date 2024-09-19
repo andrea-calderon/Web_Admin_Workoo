@@ -40,7 +40,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
       maxWidth="sm"
       sx={{
         height: '100vh',
-        width: '100%',
+        width: '100vw',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -65,7 +65,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
           maxWidth: '483px',
           padding: 0,
           bgcolor: '#fff',
-          boxShadow: 1,
+          boxShadow: 0,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -79,6 +79,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
             justifyContent: 'center',
             alignItems: 'center',
             gap: '10px',
+            mb: '30px',
             width: '181.47px',
             height: '36.9px',
           }}
@@ -94,7 +95,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
             Workoo
           </TextAtom>
         </Box>
-        <Box sx={{ height: '75px' }} />
+        <Box sx={{ height: '100px' }} />
         <Formik
           initialValues={{ username: '', password: '' }}
           validationSchema={validationSchema}
@@ -119,7 +120,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
           }}
         >
           {({ isSubmitting, touched, errors }) => (
-            <Form style={{ width: '328px' }}>
+            <Form style={{ width: '350px' }}>
               <Grid
                 container
                 spacing={2}
