@@ -1,5 +1,5 @@
 // Librerías externas
-import { Box, Container, CssBaseline } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import React, { useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
 import {
@@ -10,9 +10,8 @@ import {
 } from 'react-router-dom';
 
 // Componentes globales
-import Login from '@/features/auth/components/organisms/Login';
 import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
-import Signup from './features/auth/components/organisms/Signup';
+import InitialPage from './features/auth/components/pages/InitialPage';
 
 // Configuración de estilos
 import './styles/App.css';
@@ -43,11 +42,7 @@ const App: React.FC = () => {
                 isAuthenticated ? (
                   <Navigate to="/app/home" />
                 ) : (
-                  <Container>
-                    <Box>
-                      <Login onLogin={handleLogin} />
-                    </Box>
-                  </Container>
+                  <InitialPage onLogin={handleLogin} />
                 )
               }
             />
@@ -57,7 +52,6 @@ const App: React.FC = () => {
                 isAuthenticated ? <AuthenticatedApp /> : <Navigate to="/" />
               }
             />
-            <Route path="/register" element={<Signup />} />
           </Routes>
         </Router>
       </ThemeProvider>

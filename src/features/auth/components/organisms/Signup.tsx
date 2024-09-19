@@ -8,10 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import LanguageSwitcher from './../molecules/LanguajeSwitcher';
 
-const DEFAULT_CREDENTIALS = {
-  email: 'user@example.com',
-  password: 'password123',
-};
+// const DEFAULT_CREDENTIALS = {
+//   email: 'user@example.com',
+//   password: 'password123',
+// };
 
 const validationSchema = Yup.object({
   username: Yup.string()
@@ -107,10 +107,7 @@ const Signup: React.FC = () => {
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting, setFieldError }) => {
             try {
-              if (
-                values.email === DEFAULT_CREDENTIALS.email &&
-                values.password === DEFAULT_CREDENTIALS.password
-              ) {
+              if (values.email === '' && values.password === '') {
                 navigate('/app/home');
               } else {
                 setFieldError('email', t('signupScreen.invalidCredentials'));

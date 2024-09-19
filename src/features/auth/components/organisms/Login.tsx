@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import LanguageSwitcher from '../molecules/LanguajeSwitcher';
 
-type LoginProps = {
+interface LoginProps {
   onLogin: () => void;
-};
+}
 
 const DEFAULT_CREDENTIALS = {
   username: 'admin',
@@ -92,7 +92,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             Workoo
           </TextAtom>
         </Box>
-        <Box sx={{ height: '194px' }} />
+        <Box sx={{ height: '75px' }} />
         <Formik
           initialValues={{ username: '', password: '' }}
           validationSchema={validationSchema}
@@ -102,7 +102,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 values.username === DEFAULT_CREDENTIALS.username &&
                 values.password === DEFAULT_CREDENTIALS.password
               ) {
-                onLogin();
                 navigate('/app/home');
               } else {
                 setFieldError('username', t('loginScreen.invalidCredentials'));
@@ -120,7 +119,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             <Form style={{ width: '328px' }}>
               <Grid
                 container
-                spacing={3}
+                spacing={2}
                 direction="column"
                 justifyContent="center"
               >
@@ -165,7 +164,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     variant="filled"
                     fullWidth
                     disabled={isSubmitting}
-                    onClick={() => {}}
+                    onClick={onLogin}
                     sx={{
                       mt: 2,
                       width: '100%',
