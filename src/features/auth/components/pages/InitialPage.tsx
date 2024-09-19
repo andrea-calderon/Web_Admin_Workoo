@@ -13,6 +13,8 @@ const InitialPage: React.FC<InitialPageProps> = ({ onLogin }) => {
   const location = useLocation();
   const { t } = useTranslation();
 
+  console.log('Current pathname:', location.pathname);
+
   return (
     <Grid container sx={{ height: '100vh' }}>
       <Grid
@@ -59,7 +61,8 @@ const InitialPage: React.FC<InitialPageProps> = ({ onLogin }) => {
             src="src\assets\images\Main_screen_img_bg.svg"
             alt="Initial screen"
             style={{
-              width: '400px',
+              width: '416px',
+              height: '518px',
               borderRadius: '5%',
             }}
           />
@@ -78,8 +81,8 @@ const InitialPage: React.FC<InitialPageProps> = ({ onLogin }) => {
           backgroundColor: '#fff',
         }}
       >
-        {location.pathname === '/login' && <Login onLogin={onLogin} />}
-        {location.pathname === '/signup' && <Signup />}
+        {location.pathname.includes('/login') && <Login onLogin={onLogin} />}
+        {location.pathname.includes('/signup') && <Signup />}
       </Grid>
     </Grid>
   );

@@ -1,13 +1,7 @@
 import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
-import LoginPage from '@/features/auth/components/pages/LoginPage';
-import RegisterPage from '@/features/auth/components/pages/RegisterPage';
+import InitialPage from '@/features/auth/components/pages/InitialPage';
 import { useState } from 'react';
-import {
-  Navigate,
-  Route,
-  BrowserRouter as Router,
-  Routes,
-} from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 const PrivateRoute = ({
   isAuthenticated,
@@ -27,20 +21,17 @@ const AppRouter = () => {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/app/*"
-          element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
-              <AuthenticatedApp />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/login" element={<InitialPage onLogin={handleLogin} />} />
+      <Route
+        path="/app/*"
+        element={
+          <PrivateRoute isAuthenticated={isAuthenticated}>
+            <AuthenticatedApp />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   );
 };
 
