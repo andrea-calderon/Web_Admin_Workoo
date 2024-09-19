@@ -1,7 +1,7 @@
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box } from '@mui/material';
-import AuthInputField from '../atoms/AuthInputField';
+import AuthInputField from '../../../components/atoms/AuthInputField';
 
 const RegisterPage = () => {
   return (

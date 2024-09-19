@@ -1,4 +1,4 @@
-import TextAtom from '@/features/components/TextAtom';
+import TextAtom from '@/features/components/atoms/TextAtom';
 import { Box } from '@mui/material';
 import React from 'react';
 const ServicesPage: React.FC = () => {

@@ -7,11 +7,11 @@ import { I18nextProvider } from 'react-i18next';
 import AppRouter from './routes/AppRouter';
 
 // Configuración de estilos
+import { Provider } from 'react-redux';
+import { store } from './redux/store/store';
 import './styles/App.css';
 import { ThemeProvider } from './styles/contexts/ThemeProvider';
 import i18n from './utils/i18n';
-import { Provider } from 'react-redux';
-import { store } from './redux/store/store';
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -28,10 +28,10 @@ const App: React.FC = () => {
   return (
     <I18nextProvider i18n={i18n}>
       <Provider store={store}>
-      <ThemeProvider themeMode={themeMode} toggleTheme={toggleTheme}>
-        <CssBaseline />
-        <AppRouter isAuthenticated={isAuthenticated} onLogin={handleLogin} />
-      </ThemeProvider>
+        <ThemeProvider themeMode={themeMode} toggleTheme={toggleTheme}>
+          <CssBaseline />
+          <AppRouter isAuthenticated={isAuthenticated} onLogin={handleLogin} />
+        </ThemeProvider>
       </Provider>
     </I18nextProvider>
   );

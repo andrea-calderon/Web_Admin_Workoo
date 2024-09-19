@@ -3,8 +3,8 @@ import { Box, CssBaseline } from '@mui/material';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 // Componentes globales
-import AuthHeader from '../organisms/AuthHeader';
-import AuthSidebar from '../organisms/AuthSidebar';
+import AuthHeader from '../features/auth/components/organisms/AuthHeader';
+import AuthSidebar from '../features/auth/components/organisms/AuthSidebar';
 
 // Páginas de características específicas
 import HomePage from '@/features/auth/components/pages/HomePage';
@@ -12,13 +12,13 @@ import DashboardPage from '@/features/dashboard/components/pages/DashboardPage';
 import SettingsPage from '@/features/dashboard/components/pages/SettingsPage';
 
 // Páginas internas
-import AnalysisPage from './AnalysisPage';
-import PaymentsPage from './PaymentsPage';
-import QualificationsPage from './QualificationsPage';
-import ServicesPage from './ServicesPage';
-import SuppliersPage from './SuppliersPage';
-import SupportPage from './SupportPage';
-import UsersPage from './UsersPage';
+import AnalysisPage from '../features/auth/components/pages/AnalysisPage';
+import PaymentsPage from '../features/auth/components/pages/PaymentsPage';
+import QualificationsPage from '../features/auth/components/pages/QualificationsPage';
+import ServicesPage from '../features/auth/components/pages/ServicesPage';
+import SuppliersPage from '../features/auth/components/pages/SuppliersPage';
+import SupportPage from '../features/auth/components/pages/SupportPage';
+import UsersPage from '../features/users/pages/UsersPage';
 
 //Estilos
 import { useThemeContext } from '@/styles/contexts/ThemeProvider';
