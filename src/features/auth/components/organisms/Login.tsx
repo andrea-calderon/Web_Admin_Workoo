@@ -4,6 +4,7 @@ import TextAtom from '@/features/components/TextAtom';
 import { Box, Container, Grid } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import LanguageSwitcher from '../molecules/LanguajeSwitcher';
 
@@ -32,6 +33,7 @@ const validationSchema = Yup.object({
 
 const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <Container
@@ -103,6 +105,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
                 values.password === DEFAULT_CREDENTIALS.password
               ) {
                 onLogin();
+                navigate('/app/home');
               } else {
                 setFieldError('username', t('loginScreen.invalidCredentials'));
                 setFieldError('password', t('loginScreen.invalidCredentials'));
