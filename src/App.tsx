@@ -12,7 +12,7 @@ import {
 // Componentes globales
 import Login from '@/features/auth/components/organisms/Login';
 import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
-import RegisterForm from './features/auth/components/organisms/RegisterForm';
+import Signup from './features/auth/components/organisms/Signup';
 
 // Configuración de estilos
 import './styles/App.css';
@@ -57,7 +57,7 @@ const App: React.FC = () => {
                 isAuthenticated ? <AuthenticatedApp /> : <Navigate to="/" />
               }
             />
-            <Route path="/register" element={<RegisterForm />} />
+            <Route path="/register" element={<Signup />} />
           </Routes>
         </Router>
       </ThemeProvider>
