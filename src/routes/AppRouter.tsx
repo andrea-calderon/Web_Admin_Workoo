@@ -1,6 +1,5 @@
 import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
 import InitialPage from '@/features/auth/components/pages/InitialPage';
-import { useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
 const PrivateRoute = ({
@@ -13,16 +12,17 @@ const PrivateRoute = ({
   return isAuthenticated ? children : <Navigate to="/" />;
 };
 
-const AppRouter = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
-
+const AppRouter: React.FC<{
+  isAuthenticated: boolean;
+  onLogin: () => void;
+}> = ({ isAuthenticated, onLogin }) => {
   return (
     <Routes>
-      <Route path="/login" element={<InitialPage onLogin={handleLogin} />} />
+      <Route
+        path="/"
+        element={<Navigate to={isAuthenticated ? '/app/home' : '/login'} />}
+      />
+      <Route path="/login" element={<InitialPage onLogin={onLogin} />} />
       <Route
         path="/app/*"
         element={

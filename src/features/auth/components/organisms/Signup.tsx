@@ -8,35 +8,39 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import LanguageSwitcher from './../molecules/LanguajeSwitcher';
 
+interface SignupProps {
+  onSwitchToLogin: () => void;
+}
+
 // const DEFAULT_CREDENTIALS = {
 //   email: 'user@example.com',
 //   password: 'password123',
 // };
 
-const validationSchema = Yup.object({
-  username: Yup.string()
-    .matches(
-      /^[a-zA-Z0-9_]+$/,
-      'Username can only contain letters, numbers, and underscores',
-    )
-    .required('Username is required'),
-
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required'),
-
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required('Confirm Password is required'),
-});
-
-const Signup: React.FC = () => {
+const Signup: React.FC<SignupProps> = ({ onSwitchToLogin }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const validationSchema = Yup.object({
+    username: Yup.string()
+      .matches(
+        /^[a-zA-Z0-9_]+$/,
+        'Username can only contain letters, numbers, and underscores',
+      )
+      .required('Username is required'),
+
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
+
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password')], 'Passwords must match')
+      .required('Confirm Password is required'),
+  });
 
   return (
     <Container
@@ -47,7 +51,7 @@ const Signup: React.FC = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        bgcolor: '#F4F4F4',
+        bgcolor: '#FFF',
         position: 'relative',
       }}
     >
@@ -63,11 +67,11 @@ const Signup: React.FC = () => {
       <Box
         sx={{
           width: '100%',
-          height: '100%',
+          height: '100vh',
           maxWidth: '483px',
           padding: 0,
           bgcolor: '#fff',
-          boxShadow: 3,
+          boxShadow: 1,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -108,7 +112,7 @@ const Signup: React.FC = () => {
           onSubmit={async (values, { setSubmitting, setFieldError }) => {
             try {
               if (values.email === '' && values.password === '') {
-                navigate('/app/home');
+                navigate('/login');
               } else {
                 setFieldError('email', t('signupScreen.invalidCredentials'));
                 setFieldError('password', t('signupScreen.invalidCredentials'));
@@ -199,7 +203,7 @@ const Signup: React.FC = () => {
                     variant="filled"
                     fullWidth
                     disabled={isSubmitting}
-                    onClick={() => {}}
+                    onClick={() => console.log('Button clicked!')}
                     sx={{
                       mt: 2,
                       width: '100%',
@@ -279,7 +283,7 @@ const Signup: React.FC = () => {
                     <AuthButton
                       type="button"
                       variant="text"
-                      onClick={() => navigate('/')}
+                      onClick={onSwitchToLogin}
                       sx={{ ml: 1, textTransform: 'none', fontSize: 'inherit' }}
                     >
                       {t('signupScreen.login_title_button')}

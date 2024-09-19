@@ -4,12 +4,12 @@ import TextAtom from '@/features/components/TextAtom';
 import { Box, Container, Grid } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import LanguageSwitcher from '../molecules/LanguajeSwitcher';
 
 interface LoginProps {
   onLogin: () => void;
+  onSwitchToSignup: () => void;
 }
 
 const DEFAULT_CREDENTIALS = {
@@ -30,8 +30,7 @@ const validationSchema = Yup.object({
     .required('Password is required'),
 });
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
-  const navigate = useNavigate();
+const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
   const { t } = useTranslation();
 
   return (
@@ -43,8 +42,9 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        bgcolor: '#F4F4F4',
+        bgcolor: '#FFF',
         position: 'relative',
+        padding: 0,
       }}
     >
       <LanguageSwitcher
@@ -59,11 +59,11 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <Box
         sx={{
           width: '100%',
-          height: '100%',
+          height: '100vh',
           maxWidth: '483px',
           padding: 0,
           bgcolor: '#fff',
-          boxShadow: 3,
+          boxShadow: 1,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -102,7 +102,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                 values.username === DEFAULT_CREDENTIALS.username &&
                 values.password === DEFAULT_CREDENTIALS.password
               ) {
-                navigate('/app/home');
+                onLogin();
               } else {
                 setFieldError('username', t('loginScreen.invalidCredentials'));
                 setFieldError('password', t('loginScreen.invalidCredentials'));
@@ -205,14 +205,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   <TextAtom
                     variant="body"
                     size="small"
-                    sx={{ textAlign: 'center' }}
+                    sx={{
+                      textAlign: 'center',
+                      textTransform: 'none',
+                      fontSize: 'inherit',
+                    }}
                   >
                     {t('loginScreen.have_not_account')}
                     <AuthButton
                       type="button"
                       variant="text"
-                      onClick={() => navigate('/register')}
-                      sx={{ ml: 1, textTransform: 'none' }}
+                      onClick={onSwitchToSignup}
+                      sx={{ ml: 1, textTransform: 'none', fontSize: 'inherit' }}
                     >
                       {t('loginScreen.signup_title_button')}
                     </AuthButton>

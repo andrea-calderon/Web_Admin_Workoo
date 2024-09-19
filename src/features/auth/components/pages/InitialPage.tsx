@@ -1,7 +1,7 @@
 import TextAtom from '@/features/components/TextAtom';
 import { Box, Grid } from '@mui/material';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
 import Login from '../organisms/Login';
 import Signup from '../organisms/Signup';
 
@@ -10,10 +10,8 @@ interface InitialPageProps {
 }
 
 const InitialPage: React.FC<InitialPageProps> = ({ onLogin }) => {
-  const location = useLocation();
   const { t } = useTranslation();
-
-  console.log('Current pathname:', location.pathname);
+  const [view, setView] = useState<'login' | 'signup'>('login');
 
   return (
     <Grid container sx={{ height: '100vh' }}>
@@ -75,14 +73,18 @@ const InitialPage: React.FC<InitialPageProps> = ({ onLogin }) => {
         md={6}
         sx={{
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
           padding: '40px',
           backgroundColor: '#fff',
         }}
       >
-        {location.pathname.includes('/login') && <Login onLogin={onLogin} />}
-        {location.pathname.includes('/signup') && <Signup />}
+        {view === 'login' ? (
+          <Login onSwitchToSignup={() => setView('signup')} onLogin={onLogin} />
+        ) : (
+          <Signup onSwitchToLogin={() => setView('login')} />
+        )}
       </Grid>
     </Grid>
   );
