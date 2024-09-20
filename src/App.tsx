@@ -18,6 +18,8 @@ import Signup from './features/auth/components/organisms/Signup';
 import './styles/App.css';
 import { ThemeProvider } from './styles/contexts/ThemeProvider';
 import i18n from './utils/i18n';
+import { Provider } from 'react-redux';
+import { store } from './redux/store/store';
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -33,6 +35,7 @@ const App: React.FC = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
+      <Provider store={store}>
       <ThemeProvider themeMode={themeMode} toggleTheme={toggleTheme}>
         <CssBaseline />
         <Router>
@@ -61,6 +64,7 @@ const App: React.FC = () => {
           </Routes>
         </Router>
       </ThemeProvider>
+      </Provider>
     </I18nextProvider>
   );
 };
