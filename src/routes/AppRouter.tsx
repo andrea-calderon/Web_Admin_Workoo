@@ -1,13 +1,6 @@
 import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
-import LoginPage from '@/features/auth/components/pages/LoginPage';
-import RegisterPage from '@/features/auth/components/pages/RegisterPage';
-import { useState } from 'react';
-import {
-  Navigate,
-  Route,
-  BrowserRouter as Router,
-  Routes,
-} from 'react-router-dom';
+import InitialPage from '@/features/auth/components/pages/InitialPage';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 const PrivateRoute = ({
   isAuthenticated,
@@ -19,28 +12,26 @@ const PrivateRoute = ({
   return isAuthenticated ? children : <Navigate to="/" />;
 };
 
-const AppRouter = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
-
+const AppRouter: React.FC<{
+  isAuthenticated: boolean;
+  onLogin: () => void;
+}> = ({ isAuthenticated, onLogin }) => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LoginPage onLogin={handleLogin} />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route
-          path="/app/*"
-          element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
-              <AuthenticatedApp />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route
+        path="/"
+        element={<Navigate to={isAuthenticated ? '/app/home' : '/login'} />}
+      />
+      <Route path="/login" element={<InitialPage onLogin={onLogin} />} />
+      <Route
+        path="/app/*"
+        element={
+          <PrivateRoute isAuthenticated={isAuthenticated}>
+            <AuthenticatedApp />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   );
 };
 

@@ -8,9 +8,10 @@ import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import LanguageSwitcher from '../molecules/LanguajeSwitcher';
 
-type LoginProps = {
+interface LoginProps {
   onLogin: () => void;
-};
+  onSwitchToSignup: () => void;
+}
 
 const DEFAULT_CREDENTIALS = {
   username: 'admin',
@@ -30,21 +31,22 @@ const validationSchema = Yup.object({
     .required('Password is required'),
 });
 
-const Login: React.FC<LoginProps> = ({ onLogin }) => {
-  const navigate = useNavigate();
+const Login: React.FC<LoginProps> = ({ onLogin, onSwitchToSignup }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <Container
       maxWidth="sm"
       sx={{
         height: '100vh',
-        width: '100%',
+        width: '100vw',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        bgcolor: '#F4F4F4',
+        bgcolor: '#FFF',
         position: 'relative',
+        padding: 0,
       }}
     >
       <LanguageSwitcher
@@ -59,11 +61,11 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
       <Box
         sx={{
           width: '100%',
-          height: '100%',
+          height: '100vh',
           maxWidth: '483px',
           padding: 0,
           bgcolor: '#fff',
-          boxShadow: 3,
+          boxShadow: 0,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -77,6 +79,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             justifyContent: 'center',
             alignItems: 'center',
             gap: '10px',
+            mb: '30px',
             width: '181.47px',
             height: '36.9px',
           }}
@@ -92,7 +95,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
             Workoo
           </TextAtom>
         </Box>
-        <Box sx={{ height: '194px' }} />
+        <Box sx={{ height: '100px' }} />
         <Formik
           initialValues={{ username: '', password: '' }}
           validationSchema={validationSchema}
@@ -117,10 +120,10 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
           }}
         >
           {({ isSubmitting, touched, errors }) => (
-            <Form style={{ width: '328px' }}>
+            <Form style={{ width: '350px' }}>
               <Grid
                 container
-                spacing={3}
+                spacing={2}
                 direction="column"
                 justifyContent="center"
               >
@@ -165,7 +168,7 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                     variant="filled"
                     fullWidth
                     disabled={isSubmitting}
-                    onClick={() => {}}
+                    onClick={onLogin}
                     sx={{
                       mt: 2,
                       width: '100%',
@@ -206,14 +209,18 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
                   <TextAtom
                     variant="body"
                     size="small"
-                    sx={{ textAlign: 'center' }}
+                    sx={{
+                      textAlign: 'center',
+                      textTransform: 'none',
+                      fontSize: 'inherit',
+                    }}
                   >
                     {t('loginScreen.have_not_account')}
                     <AuthButton
                       type="button"
                       variant="text"
-                      onClick={() => navigate('/register')}
-                      sx={{ ml: 1, textTransform: 'none' }}
+                      onClick={onSwitchToSignup}
+                      sx={{ ml: 1, textTransform: 'none', fontSize: 'inherit' }}
                     >
                       {t('loginScreen.signup_title_button')}
                     </AuthButton>

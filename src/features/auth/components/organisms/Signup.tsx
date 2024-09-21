@@ -6,68 +6,62 @@ import { Field, Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import LanguageSwitcher from './../molecules/LanguajeSwitcher';
 
-const DEFAULT_CREDENTIALS = {
-  email: 'user@example.com',
-  password: 'password123',
-};
+interface SignupProps {
+  onSwitchToLogin: () => void;
+}
 
-const validationSchema = Yup.object({
-  username: Yup.string()
-    .matches(
-      /^[a-zA-Z0-9_]+$/,
-      'Username can only contain letters, numbers, and underscores',
-    )
-    .required('Username is required'),
+// const DEFAULT_CREDENTIALS = {
+//   email: 'user@example.com',
+//   password: 'password123',
+// };
 
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Email is required'),
-
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required'),
-
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required('Confirm Password is required'),
-});
-
-const Signup: React.FC = () => {
+const Signup: React.FC<SignupProps> = ({ onSwitchToLogin }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const validationSchema = Yup.object({
+    username: Yup.string()
+      .matches(
+        /^[a-zA-Z0-9_]+$/,
+        'Username can only contain letters, numbers, and underscores',
+      )
+      .required('Username is required'),
+
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
+
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 characters')
+      .required('Password is required'),
+
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password')], 'Passwords must match')
+      .required('Confirm Password is required'),
+  });
 
   return (
     <Container
       maxWidth="sm"
       sx={{
         height: '100vh',
-        width: '100%',
+        width: '100vw',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        bgcolor: '#F4F4F4',
+        bgcolor: '#FFF',
         position: 'relative',
       }}
     >
-      <LanguageSwitcher
-        sx={{
-          position: 'absolute',
-          top: 16,
-          right: 75,
-          zIndex: 1000,
-        }}
-      />
-
       <Box
         sx={{
           width: '100%',
-          height: '100%',
+          height: '100vh',
           maxWidth: '483px',
           padding: 0,
           bgcolor: '#fff',
-          boxShadow: 3,
+          boxShadow: 0,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -107,11 +101,8 @@ const Signup: React.FC = () => {
           validationSchema={validationSchema}
           onSubmit={async (values, { setSubmitting, setFieldError }) => {
             try {
-              if (
-                values.email === DEFAULT_CREDENTIALS.email &&
-                values.password === DEFAULT_CREDENTIALS.password
-              ) {
-                navigate('/app/home');
+              if (values.email === '' && values.password === '') {
+                navigate('/login');
               } else {
                 setFieldError('email', t('signupScreen.invalidCredentials'));
                 setFieldError('password', t('signupScreen.invalidCredentials'));
@@ -125,7 +116,7 @@ const Signup: React.FC = () => {
           }}
         >
           {({ isSubmitting, touched, errors }) => (
-            <Form style={{ width: '328px' }}>
+            <Form style={{ width: '350px' }}>
               <Grid
                 container
                 spacing={1.5}
@@ -202,7 +193,7 @@ const Signup: React.FC = () => {
                     variant="filled"
                     fullWidth
                     disabled={isSubmitting}
-                    onClick={() => {}}
+                    onClick={() => console.log('Button clicked!')}
                     sx={{
                       mt: 2,
                       width: '100%',
@@ -282,7 +273,7 @@ const Signup: React.FC = () => {
                     <AuthButton
                       type="button"
                       variant="text"
-                      onClick={() => navigate('/')}
+                      onClick={onSwitchToLogin}
                       sx={{ ml: 1, textTransform: 'none', fontSize: 'inherit' }}
                     >
                       {t('signupScreen.login_title_button')}

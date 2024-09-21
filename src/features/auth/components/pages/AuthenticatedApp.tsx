@@ -1,6 +1,6 @@
 // Librerías externas
 import { Box, CssBaseline } from '@mui/material';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
 // Componentes globales
 import AuthHeader from '../organisms/AuthHeader';
@@ -20,6 +20,7 @@ import SuppliersPage from './SuppliersPage';
 import SupportPage from './SupportPage';
 import UsersPage from './UsersPage';
 
+//Estilos
 import { useThemeContext } from '@/styles/contexts/ThemeProvider';
 
 const AuthenticatedApp: React.FC = () => {
@@ -33,8 +34,8 @@ const AuthenticatedApp: React.FC = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          marginLeft: '240px',
-          marginTop: '64px',
+          marginLeft: { xs: '0', md: '240px' },
+          marginTop: { xs: '56px', md: '64px' },
           position: 'relative',
         }}
       >
@@ -49,6 +50,7 @@ const AuthenticatedApp: React.FC = () => {
           <Route path="support" element={<SupportPage />} />
           <Route path="analysis" element={<AnalysisPage />} />
           <Route path="settings" element={<SettingsPage />} />
+          <Route path="*" element={<Navigate to="/app/home" />} />
         </Routes>
       </Box>
     </Box>

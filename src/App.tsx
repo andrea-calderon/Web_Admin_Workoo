@@ -1,18 +1,10 @@
 // Librerías externas
-import { Box, Container, CssBaseline } from '@mui/material';
+import { CssBaseline } from '@mui/material';
 import React, { useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
-import {
-  Navigate,
-  Route,
-  BrowserRouter as Router,
-  Routes,
-} from 'react-router-dom';
 
 // Componentes globales
-import Login from '@/features/auth/components/organisms/Login';
-import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
-import Signup from './features/auth/components/organisms/Signup';
+import AppRouter from './routes/AppRouter';
 
 // Configuración de estilos
 import './styles/App.css';
@@ -38,31 +30,7 @@ const App: React.FC = () => {
       <Provider store={store}>
       <ThemeProvider themeMode={themeMode} toggleTheme={toggleTheme}>
         <CssBaseline />
-        <Router>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                isAuthenticated ? (
-                  <Navigate to="/app/home" />
-                ) : (
-                  <Container>
-                    <Box>
-                      <Login onLogin={handleLogin} />
-                    </Box>
-                  </Container>
-                )
-              }
-            />
-            <Route
-              path="/app/*"
-              element={
-                isAuthenticated ? <AuthenticatedApp /> : <Navigate to="/" />
-              }
-            />
-            <Route path="/register" element={<Signup />} />
-          </Routes>
-        </Router>
+        <AppRouter isAuthenticated={isAuthenticated} onLogin={handleLogin} />
       </ThemeProvider>
       </Provider>
     </I18nextProvider>

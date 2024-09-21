@@ -1,4 +1,8 @@
 {
+  "initialScreen":{
+    "initialTitle": "Easily manage your tasks and establish a network of preferred on Workoo."
+  },
+
   "loginScreen":{
     "usernameLabel": "Username",
     "usernamePlaceholder": "Enter your username",
