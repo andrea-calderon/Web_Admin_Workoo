@@ -80,7 +80,7 @@ const SettingsPage: React.FC = () => {
         flexDirection: 'column',
         p: 3,
         m: '40px',
-        backgroundColor: 'theme.palette.background.default',
+        backgroundColor: theme.palette.background.paper,
         color: theme.palette.text.primary,
         borderRadius: '16px',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
