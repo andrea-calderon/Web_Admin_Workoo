@@ -33,5 +33,8 @@
   "privacy_policy": "Política de privacidad",
   "have_an_account": "¿Ya tienes una cuenta?",
   "login_title_button": "Iniciar sesión"
+  },
+  "settingsScreen":{
+    "save_title_button": "Guardar"
   }
 }
