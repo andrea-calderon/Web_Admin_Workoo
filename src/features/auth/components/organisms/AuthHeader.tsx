@@ -1,13 +1,21 @@
-
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
 import SettingsIcon from '@mui/icons-material/Settings';
-import { AppBar, Avatar, Box, IconButton, InputBase, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import {
+  AppBar,
+  Avatar,
+  Box,
+  IconButton,
+  InputBase,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import React, { useState } from 'react';
-
 
 interface AuthHeaderProps {
   toggleTheme: () => void;
@@ -15,7 +23,7 @@ interface AuthHeaderProps {
 }
 
 const AuthHeader: React.FC<AuthHeaderProps> = ({ toggleTheme, themeMode }) => {
-  const theme = useTheme()
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -31,18 +39,22 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({ toggleTheme, themeMode }) => {
     <AppBar
       position="fixed"
       sx={{
-        backgroundColor: theme => theme.palette.background.default,
+        backgroundColor: (theme) => theme.palette.background.paper,
         width: 'calc(100% - 240px)',
         left: '240px',
-        zIndex: theme => theme.zIndex.drawer + 1,
+        zIndex: (theme) => theme.zIndex.drawer + 1,
         boxShadow: 'none',
-        borderBottom: theme => `1.5px solid ${theme.palette.divider}`,
+        borderBottom: (theme) => `1.5px solid ${theme.palette.divider}`,
       }}
     >
       <Toolbar sx={{ justifyContent: 'space-between', padding: '0 16px' }}>
-      <Typography
+        <Typography
           variant="h6"
-          sx={{ flexGrow: 1, textAlign: 'left', color: theme.palette.text.primary }}
+          sx={{
+            flexGrow: 1,
+            textAlign: 'left',
+            color: theme.palette.text.primary,
+          }}
         >
           Overview
         </Typography>
@@ -92,7 +104,12 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({ toggleTheme, themeMode }) => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={() => { toggleTheme(); handleClose(); }}>
+            <MenuItem
+              onClick={() => {
+                toggleTheme();
+                handleClose();
+              }}
+            >
               {themeMode === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
               <Typography sx={{ ml: 1 }}>
                 {themeMode === 'light' ? 'Dark Mode' : 'Light Mode'}
@@ -112,7 +129,6 @@ const AuthHeader: React.FC<AuthHeaderProps> = ({ toggleTheme, themeMode }) => {
             <NotificationsIcon />
           </IconButton>
           <Avatar alt="User Profile" src="/path-to-image.jpg" sx={{ ml: 3 }} />
-
         </Box>
       </Toolbar>
     </AppBar>
