@@ -2,7 +2,15 @@ import AuthButton from '@/features/auth/components/atoms/AuthButton';
 import AuthInputField from '@/features/components/atoms/AuthInputField';
 import TextAtom from '@/features/components/atoms/TextAtom';
 import { Edit as EditIcon } from '@mui/icons-material';
-import { Avatar, Box, Grid2, IconButton, Tab, Tabs } from '@mui/material';
+import {
+  Avatar,
+  Box,
+  Grid2,
+  IconButton,
+  Tab,
+  Tabs,
+  useTheme,
+} from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -40,6 +48,7 @@ function a11yProps(index: number) {
 const SettingsPage: React.FC = () => {
   const { t } = useTranslation();
   const [value, setValue] = React.useState(0);
+  const theme = useTheme();
 
   const handleChange = (_: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -71,7 +80,8 @@ const SettingsPage: React.FC = () => {
         flexDirection: 'column',
         p: 3,
         m: '40px',
-        backgroundColor: '#fff',
+        backgroundColor: 'theme.palette.background.default',
+        color: theme.palette.text.primary,
         borderRadius: '16px',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.1)',
       }}
