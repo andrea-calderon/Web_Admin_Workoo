@@ -1,11 +1,12 @@
 import AuthButton from '@/features/auth/components/atoms/AuthButton';
-import AuthInputField from '@/features/auth/components/atoms/AuthInputField';
-import TextAtom from '@/features/components/TextAtom';
+import AuthInputField from '@/features/components/atoms/AuthInputField';
+import TextAtom from '@/features/components/atoms/TextAtom';
 import { Box, Container, Grid } from '@mui/material';
 import { Field, Form, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import LanguageSwitcher from './../molecules/LanguajeSwitcher';
 
 interface SignupProps {
   onSwitchToLogin: () => void;
@@ -54,6 +55,14 @@ const Signup: React.FC<SignupProps> = ({ onSwitchToLogin }) => {
         position: 'relative',
       }}
     >
+      <LanguageSwitcher
+        sx={{
+          position: 'absolute',
+          top: 16,
+          right: 75,
+          zIndex: 1000,
+        }}
+      />
       <Box
         sx={{
           width: '100%',

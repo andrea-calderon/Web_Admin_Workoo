@@ -35,5 +35,9 @@
     "have_an_account": "Already have an account?",
     "login_title_button":"Log In"
     
+  },
+
+  "settingsScreen":{
+    "save_title_button": "Save"
   }
 }

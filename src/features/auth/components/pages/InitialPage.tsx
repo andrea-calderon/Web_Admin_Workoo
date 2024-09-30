@@ -1,4 +1,4 @@
-import TextAtom from '@/features/components/TextAtom';
+import TextAtom from '@/features/components/atoms/TextAtom';
 import { Box, Grid } from '@mui/material';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';

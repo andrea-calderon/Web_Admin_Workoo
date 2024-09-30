@@ -1,6 +1,7 @@
-import AuthenticatedApp from '@/features/auth/components/pages/AuthenticatedApp';
 import InitialPage from '@/features/auth/components/pages/InitialPage';
+
 import { Navigate, Route, Routes } from 'react-router-dom';
+import AuthenticatedApp from './AuthenticatedApp';
 
 const PrivateRoute = ({
   isAuthenticated,

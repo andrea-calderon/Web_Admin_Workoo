@@ -1,4 +1,4 @@
-import TextAtom from '@/features/components/TextAtom';
+import TextAtom from '@/features/components/atoms/TextAtom';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import GradeIcon from '@mui/icons-material/Grade';
 import HomeIcon from '@mui/icons-material/Home';
